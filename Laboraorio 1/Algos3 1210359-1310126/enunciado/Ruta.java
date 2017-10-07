@@ -5,6 +5,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+/**
+ * Realizado por José Basandta 13-10125 y Jesús Marcano 12-10359
+ * Lab 1 Roy-Warshall
+ * clase main y constructor de Grafo tal que crea a raiz de recibir el archivo de entrada
+ * la matriz de Clausura Transitiva correspondiente al grafo*/
 public class Ruta{
 
   	public static void main (String[] args) throws IOException{
