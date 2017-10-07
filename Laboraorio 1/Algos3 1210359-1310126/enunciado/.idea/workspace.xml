@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e409220-d910-4c2f-8361-09096c7f01bc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Algos3 1210359-1310126.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ruta.java" afterPath="$PROJECT_DIR$/Ruta.java" />
-    </list>
+    <list default="true" id="0e409220-d910-4c2f-8361-09096c7f01bc" name="Default" comment="" />
     <ignored path="enunciado.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -823,12 +818,12 @@
       <option name="presentableId" value="Default" />
       <updated>1507332606372</updated>
       <workItem from="1507332610929" duration="2744000" />
-      <workItem from="1507341158212" duration="2924000" />
+      <workItem from="1507341158212" duration="3011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5668000" />
+    <option name="totallyTimeSpent" value="5755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
