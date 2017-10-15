@@ -47,6 +47,7 @@ public static void main(String[] args) throws IOException{
 	Nodo unNodo;
 	Vertice unVertice;
 
+
 	unaLista = miGrafoNoDirigido.getListaAdyacencia();
 	unNodo = unaLista.getLast();
 	unVertice = unNodo.getVertice();
@@ -59,5 +60,94 @@ public static void main(String[] args) throws IOException{
 	System.out.println();
 	System.out.println();
 	System.out.println(miGrafoNoDirigido.toString());
+	System.out.println(miGrafoNoDirigido.numeroDeLados());
+
+	System.out.println();
+	System.out.println();
+	Vertice segundoVertice;
+	segundoVertice = new Vertice("hola",500);
+	System.out.println(miGrafoNoDirigido.agregarVertice(segundoVertice));
+	System.out.println(miGrafoNoDirigido.toString());
+
+	System.out.println();
+	System.out.println();
+
+	System.out.println(miGrafoNoDirigido.agregarVertice("qloq",80));
+	System.out.println(miGrafoNoDirigido.toString());
+
+	System.out.println(miGrafoNoDirigido.estaVertice("epa"));
+
+	System.out.println();
+	System.out.println();
+
+	System.out.println(miGrafoNoDirigido.estaLado("30","20"));
+
+	System.out.println();
+	System.out.println();
+
+	//System.out.println(miGrafoNoDirigido.eliminarVertice("40"));
+	System.out.println(miGrafoNoDirigido.toString());
+
+	System.out.println();
+	System.out.println();
+	List<Vertice> listaDeVertice;
+
+	listaDeVertice = miGrafoNoDirigido.vertices();
+
+	System.out.println(listaDeVertice.get(0).toString());
+	List<Lado> listaDelado;
+
+	listaDelado = miGrafoNoDirigido.lados();
+	System.out.println(listaDelado.get(2).toString());
+
+	System.out.println();
+	System.out.println();
+
+	System.out.println(miGrafoNoDirigido.grado("30"));
+
+	System.out.println();
+	System.out.println();
+
+	listaDeVertice = miGrafoNoDirigido.adyacentes("30");
+
+	System.out.println(listaDeVertice.get(0).toString());
+
+	System.out.println();
+	System.out.println();
+
+	Vertice verticeU;
+	Vertice verticeV;
+	Arista nuevaArista;
+
+	verticeU = miGrafoNoDirigido.obtenerVertice("10");
+	verticeV = miGrafoNoDirigido.obtenerVertice("20");
+
+	//verticeU = new Vertice("miVerticeU",32);
+	//verticeV = new Vertice("miVerticeV", 80);
+
+	nuevaArista = new Arista("miAristaNueva",50,verticeU,verticeV);
+
+	miGrafoNoDirigido.agregarArista("50",10,"hola","qloq");
+	System.out.println(miGrafoNoDirigido.toString());
+
+	System.out.println();
+	System.out.println();
+
+	System.out.println(miGrafoNoDirigido.eliminarArista("aja"));
+	System.out.println(miGrafoNoDirigido.toString());
+
+	System.out.println();
+	System.out.println();
+
+	System.out.println(miGrafoNoDirigido.obtenerArista("200").toString());
+
+
+
+
+
+	
+	
+
+
 }
 }
