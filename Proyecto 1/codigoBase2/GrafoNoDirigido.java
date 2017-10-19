@@ -5,6 +5,8 @@
 /*Todas las librerias necesarias*/
 
 import java.util.*;
+import java.lang.Exception;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
@@ -227,23 +229,47 @@ public class GrafoNoDirigido implements Grafo{
     public String toString() {
 
         String representacionGrafo;
+        List<Arista> listaDelado = new ArrayList<Arista>();
         representacionGrafo = "";
 
         /*Va recorriendo la lista de Adyacencias (los vertices)*/
+        representacionGrafo += nVertices;
+        representacionGrafo += "\n";
+        representacionGrafo += nLados;
+        representacionGrafo += "\n";
+        for (Iterator<Nodo> i = listaDeAdyacencias.iterator();i.hasNext();){
+            Nodo item = i.next();
+            Vertice unVertice = item.getVertice();
+            representacionGrafo += unVertice.toString();
+            representacionGrafo += "\n";
+        }
+
+        listaDelado = aristas();
+        for (Iterator<Arista> i = listaDelado.iterator();i.hasNext();){
+            Arista item = i.next();
+            representacionGrafo += item.toString();
+            representacionGrafo += "\n";
+
+        }
+
+
+        /*
         for (Iterator<Nodo> i = listaDeAdyacencias.iterator(); i.hasNext();) {
                 Nodo item = i.next();
                 Vertice unVertice = item.getVertice();
-                representacionGrafo += unVertice.toString();
                 if (item.getRelacion()!=null){
-                    /*Va recorriendo los adyacentes de cada vertice */
+                    *//*Va recorriendo los adyacentes de cada vertice */
+                    /*
                     item = item.getRelacion();
                     while (item!=null){
-                    representacionGrafo += "----" + item.getVertice().toString();
+
+                    representacionGrafo += item.getLado().toString();
+                    representacionGrafo += "\n";
                     item = item.getSiguiente();
                 }
                 }
-                representacionGrafo += "\n";
-        }
+                //representacionGrafo += "\n";
+        }*/
         return representacionGrafo;
     }
 
@@ -350,6 +376,7 @@ public class GrafoNoDirigido implements Grafo{
         int posicion = 0;
 
         if (estaElVertice==true){
+            nVertices--;
             for (Iterator<Nodo> i = listaDeAdyacencias.iterator(); i.hasNext();){
                 Nodo item = i.next();
 
@@ -371,10 +398,12 @@ public class GrafoNoDirigido implements Grafo{
                         
                         if (iterador2.getSiguiente()!=null){
                             iterador.setRelacion(iterador2.getSiguiente());
+                            nLados--;
                         }
 
                         else{
                             iterador.setRelacion(null);
+                            nLados--;
                         }
                     }
 
@@ -389,6 +418,7 @@ public class GrafoNoDirigido implements Grafo{
 
                                 if (iterador2.getSiguiente()!=null){
                                     iterador.setSiguiente(iterador2.getSiguiente());
+                                    nLados--;
                                 }
 
                                 else{
@@ -396,6 +426,7 @@ public class GrafoNoDirigido implements Grafo{
                                     /*Caso en el que Vertice a eliminar este al final en los relacionados
                                      con el vertice que estamos revisando */
                                     iterador.setSiguiente(null);
+                                    nLados--;
                                 }
                             }
                         iterador = iterador.getSiguiente();
@@ -449,6 +480,42 @@ public class GrafoNoDirigido implements Grafo{
                 }
             }
             return listaDelado;
+    }
+
+    public List<Arista> aristas(){
+        List<Arista> listaDeAristas = new ArrayList<Arista>();
+
+            /*Recorre la lista de adyacencia y si el Nodo tiene relaciones, entonces
+            va almacenando cada lado en la lista de lados */
+            for (Iterator<Nodo> i = listaDeAdyacencias.iterator(); i.hasNext();){
+                Nodo item = i.next();
+                if(item.getRelacion()!=null){
+                    Nodo iterador;
+                    iterador = item.getRelacion();
+                    while(iterador!=null){
+                        boolean seRepite = false;
+                        for (Iterator<Arista> j = listaDeAristas.iterator(); j.hasNext();){
+                            Arista item2 = j.next();
+                            if (item2.getId().equals(iterador.getLado().getId())){
+                                seRepite = true;
+                                break;
+                            }
+                        }
+
+                        if (seRepite == false){
+                            Arista arista1= new Arista(iterador.getLado().getId(),
+                                                iterador.getLado().getPeso(),
+                                                item.getVertice(),
+                                                iterador.getVertice());
+                            listaDeAristas.add(arista1); 
+                        }
+                        iterador = iterador.getSiguiente();
+
+                    }
+                    
+                }
+            }
+            return listaDeAristas;
     }
 
 
@@ -571,6 +638,7 @@ public class GrafoNoDirigido implements Grafo{
                     }
 
                     if (seAgrego==true){ //Si no existe, la agregamos
+                        nLados++;
                         nodoU = obtenerNodo(u.getId());
                         nodoNuevoU = new Nodo(u,a);
                         nodoV = obtenerNodo(v.getId());
@@ -622,6 +690,9 @@ public class GrafoNoDirigido implements Grafo{
         verticeV = obtenerVertice(v);
         Arista aristaAgregar = new Arista(id,peso,verticeU,verticeV);
         sePudoAgregar = agregarArista(aristaAgregar);
+        if (sePudoAgregar == true){
+            nLados++;
+        }
         return sePudoAgregar;
     }
 
@@ -692,6 +763,10 @@ public class GrafoNoDirigido implements Grafo{
 
         }
 
+        if (estaLaArista == true){
+            nLados--;
+        }
+
         return estaLaArista;
 
         
@@ -733,6 +808,19 @@ public class GrafoNoDirigido implements Grafo{
         
     }
 
+    public GrafoNoDirigido clone() throws IOException{
+
+        GrafoNoDirigido clon;
+        clon = new GrafoNoDirigido();
+        BufferedWriter bw;
+        File archivo = new File("archivo.txt");
+        bw = new BufferedWriter(new FileWriter(archivo));
+        bw.write(toString()); 
+        bw.close();
+        clon.cargarGrafo("archivo.txt");
+        return clon;
+    }
+
         
 
 
@@ -768,8 +856,7 @@ public class GrafoNoDirigido implements Grafo{
     public List<Lado> incidentes(String id) {
     }
 
-    public Object clone() {
-    }
+
 
     */
 

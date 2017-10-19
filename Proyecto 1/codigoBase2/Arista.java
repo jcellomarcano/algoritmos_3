@@ -12,7 +12,7 @@ public class Arista extends Lado
     super(id,peso);
     this.u = u;
     this.v = v;
-    representacion = "La arista: " + this.id + " tiene peso: " + this.peso + " y es de la forma: " + this.u.toString() + "--" + this.peso + "---" + this.v.toString();
+    representacion = this.id + " " + this.u.getId() + " " + this.v.getId() + " " + this.peso;
   }
 
   public Vertice getExtremo1() {

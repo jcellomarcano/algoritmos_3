@@ -16,10 +16,9 @@ public interface Grafo
 {
     public boolean cargarGrafo(String dirArchivo) throws IOException;
 
-    /*
+
     
-    public int numeroDeVertices(){
-    }
+    public int numeroDeVertices();
 
     public int numeroDeLados();
     
@@ -45,8 +44,7 @@ public interface Grafo
  
     public List<Lado> incidentes(String id);
 
-    public Object clone();
+    public Object clone() throws IOException;
 
     public String toString();
-    */
 }

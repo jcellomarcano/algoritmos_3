@@ -11,7 +11,7 @@ public class Vertice
   public Vertice(String id, double peso) {
     this.id = id;
     this.peso = peso;
-    representacion = "("+this.id + "," + this.peso + ")";
+    representacion = this.id + " " + this.peso;
   }
 
   public double getPeso() {

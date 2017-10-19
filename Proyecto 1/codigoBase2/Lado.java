@@ -11,7 +11,7 @@ public abstract class Lado
   public Lado(String id, double peso) {
   		this.id = id;
 		this.peso = peso;
-		representacion = "El lado con id: " + this.id + " tiene peso: " + this.peso;
+		representacion = this.id + " " + this.peso;
   }
 
   public String getId() {
