@@ -1,5 +1,8 @@
 /**
- * 
+ * Grafo.java
+ * Autores:
+ * @author Jesus Marcano USB-ID 12-10359
+ * @author Jose Basanta USB-ID 13-10125
  */
 
 import java.util.*;
@@ -44,7 +47,7 @@ public interface Grafo
  
     public List<Lado> incidentes(String id);
 
-    public Object clone() throws IOException;
+    //public Object clone();
 
     public String toString();
 }

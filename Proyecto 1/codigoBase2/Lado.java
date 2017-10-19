@@ -1,5 +1,8 @@
 /**
- * 
+ * Lado.java
+ * Autores:
+ * @author Jesus Marcano USB-ID 12-10359
+ * @author Jose Basanta USB-ID 13-10125
  */
 
 public abstract class Lado

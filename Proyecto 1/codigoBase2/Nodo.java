@@ -1,3 +1,10 @@
+/**
+ * Nodo.java
+ * Autores:
+ * @author Jesus Marcano USB-ID 12-10359
+ * @author Jose Basanta USB-ID 13-10125
+ */
+
 public class Nodo{
 
 	private Vertice vertice;

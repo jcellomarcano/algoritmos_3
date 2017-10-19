@@ -1,5 +1,8 @@
 /**
- * 
+ * GrafoNoDirigido.java
+ * Autores:
+ * @author Jesus Marcano USB-ID 12-10359
+ * @author Jose Basanta USB-ID 13-10125
  */
 
 /*Todas las librerias necesarias*/
@@ -27,9 +30,25 @@ public class GrafoNoDirigido implements Grafo{
     // Lista de Adyacencias que relacionara cada vertice con sus adyacentes
     private LinkedList<Nodo> listaDeAdyacencias = new LinkedList<Nodo>();
 
-    public GrafoNoDirigido() {
+    /**
+ * GrafoNoDirigido:
+ * Crea un grafo no dirigido
+ * Parametros de salida:
+ * @param GrafoNoDirigido: objeto grafo dirigido
+*/
 
+    public GrafoNoDirigido() {
     }
+
+    /**
+ * cargarGrafo:
+ * Carga en un grafo la informacion almacenada en el archivo de texto
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param archivo: string, archivo donde se encuentra el grafo
+ * Parametros de salida:
+ * @throws seCargo: boolean, los datos del archivo se cargaron exitosamente o caso contrario
+*/
 
     public boolean cargarGrafo(String dirArchivo) throws IOException{
 
@@ -166,6 +185,16 @@ public class GrafoNoDirigido implements Grafo{
         return seCargo;
     }
 
+/**
+ * obtenerNodo:
+ * Retorna el vertice contenido en el grafo que posee el identificador id
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws nodoDeVerticeEncontrado: objeto vertice
+*/
+
     public Nodo obtenerNodo(String id){
 
         try{
@@ -194,6 +223,16 @@ public class GrafoNoDirigido implements Grafo{
         }
         
     }
+
+/**
+ * obtenerVertice:
+ * Retorna el vertice contenido en el grafo que posee el identificador id
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws verticeEncontrado: objeto vertice
+*/
 
     public Vertice obtenerVertice(String id) throws RuntimeException{
 
@@ -226,6 +265,15 @@ public class GrafoNoDirigido implements Grafo{
         return listaDeAdyacencias;
     }
 
+/**
+ * toString:
+ * Deuelve una representacion del contenido de grafo como una cadena de caracteres
+ * Parametros de entrada:
+ * @param g: grafo
+ * Parametros de salida:
+ * @throws representacionGrafo: string, representacion del contenido del grafo
+*/
+
     public String toString() {
 
         String representacionGrafo;
@@ -251,36 +299,43 @@ public class GrafoNoDirigido implements Grafo{
             representacionGrafo += "\n";
 
         }
-
-
-        /*
-        for (Iterator<Nodo> i = listaDeAdyacencias.iterator(); i.hasNext();) {
-                Nodo item = i.next();
-                Vertice unVertice = item.getVertice();
-                if (item.getRelacion()!=null){
-                    *//*Va recorriendo los adyacentes de cada vertice */
-                    /*
-                    item = item.getRelacion();
-                    while (item!=null){
-
-                    representacionGrafo += item.getLado().toString();
-                    representacionGrafo += "\n";
-                    item = item.getSiguiente();
-                }
-                }
-                //representacionGrafo += "\n";
-        }*/
         return representacionGrafo;
     }
+
+    /**
+ * numeroDeVertices:
+ * Indica el numero de vertices que posee el grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * Parametros de salida:
+ * @throws nVertices: int, numero de vertices del grafo
+*/
 
     public int numeroDeVertices() {
         return nVertices;
     }
 
-    
+    /**
+ * numeroDeLados:
+ * Indica el numero de lados que posee el grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * Parametros de salida:
+ * @throws numeroDeLados: int, numero de lados del grafo
+*/
     public int numeroDeLados() {
         return nLados;
     }
+
+/**
+ * agregarVertice:
+ * Agrega el vertice v al grafo g previamente creado
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param v: objeto vertice
+ * Parametros de salida:
+ * @throws seAgrego: boolean, el vertice se ha agregado exitosamente o caso contrario
+*/
 
     public boolean agregarVertice(Vertice v) {
         Nodo nuevoNodo = new Nodo(v);
@@ -304,6 +359,17 @@ public class GrafoNoDirigido implements Grafo{
         }
         return seAgrego;
     }
+
+/**
+ * agregarVertice:
+ * Agrega el vertice v al grafo g previamente creado
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * @param peso: double, peso del vertice
+ * Parametros de salida:
+ * @throws seAgrego: boolean, el vertice se ha agregado exitosamente o caso contrario
+*/
 
     public boolean agregarVertice(String id, double peso) {
         Vertice nuevoVertice = new Vertice(id, peso);
@@ -329,6 +395,16 @@ public class GrafoNoDirigido implements Grafo{
         return seAgrego;
     }
 
+/**
+ * estaVertice:
+ * Se indica si un vertice con el identificador id se encuentra o no en el grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws estaElVertice: boolean, el vertice pertenece al grafo o caso contrario
+*/
+
     public boolean estaVertice(String id) {
         boolean estaElVertice = false;
 
@@ -342,6 +418,17 @@ public class GrafoNoDirigido implements Grafo{
         }
         return estaElVertice;
     }
+
+/**
+ * estaLado:
+ * Determina si un lado pertenece al grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param u: objeto vertice, vertice en el extremo inicial del lado
+ * @param v: objeto vertice, vertice en el extremo final del lado
+ * Parametros de salida:
+ * @throws estaElLado: boolean, el lado se encuentra en el grafo o caso contrario
+*/
 
     public boolean estaLado(String u, String v){
         boolean estaElLado = false;
@@ -367,6 +454,16 @@ public class GrafoNoDirigido implements Grafo{
         return estaElLado;
 
     }
+
+/**
+ * eliminarVertice:
+ * Elimina el vertice del grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws estaElVertice: boolean, el vertice se ha eliminado exitosamente o caso contrario
+*/
 
     public boolean eliminarVertice(String id) {
 
@@ -450,6 +547,15 @@ public class GrafoNoDirigido implements Grafo{
         return estaElVertice;       
     }
 
+/**
+ * vertices:
+ * Retorna una lista con los vertices del grafo
+ * Parametros de entrada:
+ * @param g: grafo g
+ * Parametros de salida:
+ * @throws listaVertices: list, lista con los vertices del grafo g
+*/
+
     public List<Vertice> vertices() {
 
         List<Vertice> listaDeVertice = new ArrayList<Vertice>();
@@ -461,6 +567,15 @@ public class GrafoNoDirigido implements Grafo{
         }
         return listaDeVertice;
     }
+
+/**
+ * lados:
+ * Retorna una lista con los lados del grafo
+ * Parametros de entrada:
+ * @param g: grafo g
+ * Parametros de salida:
+ * @throws listaLados: list, lista con los lados del grafo g
+*/
 
     public List<Lado> lados(){
         List<Lado> listaDelado = new ArrayList<Lado>();
@@ -518,6 +633,16 @@ public class GrafoNoDirigido implements Grafo{
             return listaDeAristas;
     }
 
+/**
+ * grado:
+ * Calcula el grado del vertice identificado por id en el grafo g
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws entero, grado del vertice
+*/
+
 
     public int grado(String id) throws RuntimeException{
 
@@ -549,6 +674,16 @@ public class GrafoNoDirigido implements Grafo{
         
     }
 
+/**
+ * adyacentes:
+ * Obtiene los vertices adyacentes al vertice identificado por id en el grafo g y los retorna en una lista
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws listaAdyacentes: list, lista con los vertices adyacentes a un vertice
+*/
+
     public List<Vertice> adyacentes(String id) throws RuntimeException {
 
         try{
@@ -574,6 +709,16 @@ public class GrafoNoDirigido implements Grafo{
             return null;
         }
     }
+
+/**
+ * incidentes:
+ * Obtiene los lados incidentes al vertice identificado por id en el grafo g y los retorna en una lista
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del vertice
+ * Parametros de salida:
+ * @throws listaIncidentes: list, lista con los lados incidentes a un vertice
+*/
 
     public List<Lado> incidentes(String id) throws RuntimeException{
 
@@ -601,6 +746,16 @@ public class GrafoNoDirigido implements Grafo{
         
 
     }
+
+/**
+ * agregarArista:
+ * Agrega un nuevo arco al grafo g si el identificador del arco no lo posee ningun arco en el grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param a: arista, objeto arista
+ * Parametros de salida:
+ * @throws sePudoAgregar: boolean, el arco se ha agregado exitosamente o caso contrario
+*/
 
     public boolean agregarArista(Arista a) {
 
@@ -681,6 +836,19 @@ public class GrafoNoDirigido implements Grafo{
 
     }
 
+/**
+ * agregarArco:
+ * Agrega un nuevo arco al grafo g si el identificador del arco no lo posee ningun arco en el grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, id de la arista 
+ * @param peso: double, peso de la arista
+ * @param u: string, id del vertice u
+ * @param v: string, id del vertice v
+ * Parametros de salida:
+ * @throws sePudoAgregar: boolean, el arco se ha agregado exitosamente o caso contrario
+*/
+
     public boolean agregarArista(String id, double peso, String u, String v) {
 
         boolean sePudoAgregar = true;
@@ -695,6 +863,16 @@ public class GrafoNoDirigido implements Grafo{
         }
         return sePudoAgregar;
     }
+
+/**
+ * eliminarArista:
+ * Elimina el arco que este identificado con id en el grafo
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del arista
+ * Parametros de salida:
+ * estaLaArista: boolean, el arco se ha eliminado exitosamente o caso contrario
+*/
 
     public boolean eliminarArista(String id) {
         boolean estaLaArista;
@@ -772,6 +950,16 @@ public class GrafoNoDirigido implements Grafo{
         
     }
 
+/**
+ * obtenerArista:
+ * Devuelve la arista que tiene como identificador id
+ * Parametros de entrada:
+ * @param g: grafo
+ * @param id: string, identificador del arista
+ * Parametros de salida:
+ * @throws aristaABuscar, objeto arista
+*/
+
     public Arista obtenerArista(String id) throws RuntimeException{
 
         try{
@@ -808,66 +996,39 @@ public class GrafoNoDirigido implements Grafo{
         
     }
 
-    public GrafoNoDirigido clone() throws IOException{
+/**
+ * clone:
+ * Retorna un nuevo grafo con la misma composicion del grafo de entrada
+ * Parametros de entrada:
+ * @param g: grafo
+ * Parametros de salida:
+ * @throws clon: nuevo grafo
+*/
 
-        GrafoNoDirigido clon;
-        clon = new GrafoNoDirigido();
-        BufferedWriter bw;
-        File archivo = new File("archivo.txt");
-        bw = new BufferedWriter(new FileWriter(archivo));
-        bw.write(toString()); 
-        bw.close();
-        clon.cargarGrafo("archivo.txt");
+
+
+    public GrafoNoDirigido clone(){
+
+
+        GrafoNoDirigido clon = new GrafoNoDirigido();
+        List<Vertice> listaDeVertice = new ArrayList<Vertice>();
+        listaDeVertice = vertices();
+        List<Arista> listaDeAristas = new ArrayList<Arista>();
+        listaDeAristas = aristas();
+        for (Iterator<Vertice> i = listaDeVertice.iterator(); i.hasNext();){
+            Vertice item = i.next();
+            clon.agregarVertice(item);
+        }
+         for (Iterator<Arista> j = listaDeAristas.iterator(); j.hasNext();){
+            Arista item2 = j.next();
+            clon.agregarArista(item2);
+        }
+
         return clon;
+
+
     }
 
-        
 
-
-    //public Object clone() {
-    //
-
+    
 }   
-    
-
-    /*
-    
-    
-
-
-    
-
-    
-    
-
-    /*
-    
-
-    
-
-    public List<Lado> lados() {
-    }
-
-    public int grado(String id) {
-    }
-
-    
- 
-    public List<Lado> incidentes(String id) {
-    }
-
-
-
-    */
-
-    /*
-    
-
-
-
-    
-
-    
-
-    */
-

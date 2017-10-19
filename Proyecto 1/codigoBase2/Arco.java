@@ -1,5 +1,8 @@
 /**
- *
+ * Arco.java
+ * Autores:
+ * @author Jesus Marcano USB-ID 12-10359
+ * @author Jose Basanta USB-ID 13-10125
  */
 
 public class Arco extends Lado
@@ -12,7 +15,7 @@ public class Arco extends Lado
     super(id,peso);
     this.extremoInicial = extremoInicial;
     this.extremoFinal = extremoFinal;
-    this.representacion = "El arco " + this.id + " tiene peso: " + this.peso + " y es de la forma: " + this.extremoInicial.toString() + "--" + this.peso + "-->" + this.extremoFinal.toString();
+    this.representacion = this.id + " " + this.extremoInicial.getId() + " "  + this.extremoFinal.getId() + " " + this.peso;
   }
 
   public Vertice getExtremoInicial() {
