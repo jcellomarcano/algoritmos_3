@@ -165,25 +165,39 @@ public class GrafoNoDirigido implements Grafo{
     }
 
     public Nodo obtenerNodo(String id){
+
+        try{
+
+
         Nodo nodoDeVerticeEncontrado;
         Vertice verticeEncontrado;
-        nodoDeVerticeEncontrado = null;
+        //nodoDeVerticeEncontrado = null;
 
         /*Iteramos en la lista de Adyacencia a ver si se encuentra el Nodo que buscamos*/
         for (Iterator<Nodo> i = listaDeAdyacencias.iterator(); i.hasNext();) {
             Nodo item = i.next();
             if (item.getVertice().getId().equals(id)){
                 nodoDeVerticeEncontrado = item;
+                return nodoDeVerticeEncontrado;
             }
 
         }
-        return nodoDeVerticeEncontrado;
+        throw new NoSuchElementException();
+
+        }
+
+        catch(NoSuchElementException e){
+            System.out.println("Error: Vertice "+id+" no existe");
+            return null;
+        }
+        
     }
 
-    public Vertice obtenerVertice(String id) {
+    public Vertice obtenerVertice(String id) throws RuntimeException{
 
-        /*Iteramos en la lista de Adyacencias comparando el id de cada 
-        Vertice asociado a cada Nodo comprobando si existe*/
+        try{
+
+
         Nodo nodoDeVerticeEncontrado;
         Vertice verticeEncontrado;
         verticeEncontrado = null;
@@ -191,10 +205,19 @@ public class GrafoNoDirigido implements Grafo{
             Nodo item = i.next();
             if (item.getVertice().getId().equals(id)){
                 verticeEncontrado = item.getVertice();
+                return verticeEncontrado;
             }
 
         }
-        return verticeEncontrado;
+        
+        throw new NoSuchElementException();
+
+        }
+
+        catch(NoSuchElementException e){
+            System.out.println("Se ha producido un error, no se encontro el vertice con id: " + id);
+            return null;
+        }
     }
         
     public LinkedList<Nodo> getListaAdyacencia(){
@@ -428,57 +451,87 @@ public class GrafoNoDirigido implements Grafo{
             return listaDelado;
     }
 
-    public int grado(String id){
+
+    public int grado(String id) throws RuntimeException{
+
+        try{
+
 
         Nodo nodoABuscar;
         Nodo iterador;
         int contador;
         nodoABuscar = obtenerNodo(id);
         contador = 0;
-        if (nodoABuscar.getRelacion()!=null){
+        if (nodoABuscar!=null && nodoABuscar.getRelacion()!=null){
             iterador = nodoABuscar.getRelacion();
             /*Recorre los relacionados del vertice a revisar */
             while(iterador!=null){
                 contador++;
                 iterador = iterador.getSiguiente();
             }
+        return contador;
 
         }
-        return contador;
+        throw new NoSuchElementException();
+        }
+
+        catch(NoSuchElementException e){
+            System.out.println("Se ha producido un error, no se encontro el vertice con id: " + id);
+            return 0;
+        }
+        
     }
 
-    public List<Vertice> adyacentes(String id) {
+    public List<Vertice> adyacentes(String id) throws RuntimeException {
+
+        try{
+
+        
         List<Vertice> listaDeVertice = new ArrayList<Vertice>();
         Nodo nodoABuscar;
         nodoABuscar = obtenerNodo(id);
-        if (nodoABuscar.getRelacion()!=null){
+        if (nodoABuscar!= null && nodoABuscar.getRelacion()!=null){
             Nodo iterador;
             iterador = nodoABuscar.getRelacion();
             while (iterador!=null){
                 listaDeVertice.add(iterador.getVertice());
                 iterador = iterador.getSiguiente();
             }
-
+            return listaDeVertice;
+        }
+        throw new NoSuchElementException();
         }
 
-
-        return listaDeVertice;
+        catch(NoSuchElementException e){
+            System.out.println("Se ha producido un error, no se encontro el vertice con id: " + id);
+            return null;
+        }
     }
 
-    public List<Lado> incidentes(String id){
+    public List<Lado> incidentes(String id) throws RuntimeException{
+
+        try{
         List<Lado> listaDelado = new ArrayList<Lado>();
         Nodo nodoABuscar;
         nodoABuscar = obtenerNodo(id);
-        if (nodoABuscar.getRelacion()!=null){
+        if (nodoABuscar!=null && nodoABuscar.getRelacion()!=null){
             Nodo iterador;
             iterador = nodoABuscar.getRelacion();
             while (iterador!=null){
                 listaDelado.add(iterador.getLado());
                 iterador = iterador.getSiguiente();
             }
+            return listaDelado;
 
         }
-        return listaDelado;
+        throw new NoSuchElementException();
+        }
+
+        catch(NoSuchElementException e){
+            System.out.println("Se ha producido un error, no se encontro el vertice con id: " + id);
+            return null;
+        }
+        
 
     }
 
@@ -644,7 +697,9 @@ public class GrafoNoDirigido implements Grafo{
         
     }
 
-    public Arista obtenerArista(String id) {
+    public Arista obtenerArista(String id) throws RuntimeException{
+
+        try{
 
         Arista aristaABuscar;
         aristaABuscar = null;
@@ -661,14 +716,21 @@ public class GrafoNoDirigido implements Grafo{
                                                 iterador.getLado().getPeso(),
                                                 item.getVertice(),
                                                 iterador.getVertice());
-                        break;
+                        return aristaABuscar;
                     }
                     iterador = iterador.getSiguiente();
                 }
             }
         }
+        throw new NoSuchElementException();
+        }
 
-        return aristaABuscar;
+        catch(NoSuchElementException e){
+            System.out.println("Se ha producido un error, no se encontro el vertice con id: " + id);
+            return null;
+        }
+
+        
     }
 
         

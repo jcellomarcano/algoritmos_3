@@ -141,6 +141,18 @@ public static void main(String[] args) throws IOException{
 
 	System.out.println(miGrafoNoDirigido.obtenerArista("200").toString());
 
+	System.out.println();
+	miGrafoNoDirigido.obtenerVertice("epale");
+	miGrafoNoDirigido.grado("quemas");
+
+	System.out.println();
+
+	miGrafoNoDirigido.adyacentes("hey");
+	miGrafoNoDirigido.incidentes("si");
+
+	System.out.println();
+	System.out.println(miGrafoNoDirigido.obtenerArista("200"));
+
 
 
 
