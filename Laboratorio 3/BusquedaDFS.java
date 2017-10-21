@@ -15,21 +15,21 @@ public class BusquedaDFS{
 	public 	BusquedaDFS(GrafoDirigido G) {
 		dfs(G);
 		descubiertos = new LinkedList<Integer>();
-		predecesoresDFS = new ArrayList<Integer>(G.numV());
-		for (int i = 0; i < G.numV(); i++) {
+		predecesoresDFS = new ArrayList<Integer>(G.numeroDeVertices());
+		for (int i = 0; i < G.numeroDeVertices(); i++) {
 			predecesoresDFS.add(-1);
 		}
 	}
 
-	private void dfs(GrafoDirigido G) {
+	public void dfs(GrafoDirigido G) {
 		salida = new Stack<Integer>();
 
 		salida.push(0);
 		while (!salida.isEmpty()) {
 			int v = salida.pop();
-			if (!descubiertos.contains(v)) {
+			if (descubiertos!=null && !descubiertos.contains(v)) {
 				descubiertos.add(v);
-				for (int vert : G.adj(v)) {
+				for (int vert : G.adyacentes(Integer.toString(v))) {
 					salida.push(vert);
 					predecesoresDFS.set(vert, v);
 				}
@@ -52,6 +52,7 @@ public class BusquedaDFS{
 		ArrayList<Integer> caminoLista = new ArrayList<Integer>();
 
 		while (temp != s || temp != -1) {
+			System.out.println(temp);
 			camino.push(temp);
 			temp = predecesoresDFS.get(temp);
 		}
@@ -82,4 +83,4 @@ public class BusquedaDFS{
 	}
 }
 
-}
+

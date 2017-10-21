@@ -9,7 +9,7 @@
 import java.util.*;
 import java.io.*;
 
-public class GrafoDirigido implements Grafo {
+public class GrafoDirigido {
 
     private int numV;
     private int numL;
@@ -303,17 +303,17 @@ public class GrafoDirigido implements Grafo {
  * Parametros de salida:
  * @throws listaAdyacentes: list, lista con los vertices adyacentes a un vertice
 */
-    public List<Vertice> adyacentes(String id) {
+    public List<Integer> adyacentes(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
         }
 
-        LinkedList<Vertice> listaAdyacentes;
-        listaAdyacentes = new LinkedList<Vertice>();
+        LinkedList<Integer> listaAdyacentes;
+        listaAdyacentes = new LinkedList<Integer>();
         for (int i=0; i<numV; i++){
             if (g.get(i).get(0).getId().equals(id)){
                 for (int j=1; j<g.get(i).size(); j++){
-                    listaAdyacentes.add(g.get(i).get(j));
+                    listaAdyacentes.add(Integer.parseInt(g.get(i).get(j).getId()));
                 }
                 return listaAdyacentes;
             }
