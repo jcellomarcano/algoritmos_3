@@ -15,7 +15,7 @@ public class GrafoDirigido {
     private int numL;
     private LinkedList<LinkedList<Vertice>> g;
     private LinkedList<Arco> listaLados;
-    private LinkedList<String> listaVerificarLargoCaminos;
+
 
 
 /**
@@ -39,43 +39,75 @@ public class GrafoDirigido {
  * @param g: grafo
  * @param archivo: string, archivo donde se encuentra el grafo
  * Parametros de salida:
- * @throws grafoCargado: boolean, los datos del archivo se cargaron exitosamente o caso contrario
+ * @throws grafoCargado: boolean, los da tos del archivo se cargaron exitosamente o caso contrario
 */
-    public boolean cargarGrafo(String dirArchivo) {
-        try {
-            Scanner in = new Scanner(new FileReader(dirArchivo));
-            boolean grafoCargado;
-            grafoCargado = false;
-            listaVerificarLargoCaminos = new LinkedList<String>();
+    public boolean cargarGrafo(String expresionArbol) {
+       boolean grafoCargado = false;
+       for (int i=0;i<expresionArbol.length();i++){
+        int contadorHijos=0;
+        if(! ( expresionArbol.substring(i,i+1).equals("(") ) && !(expresionArbol.substring(i,i+1).equals(")") )){
+            int j = i;
+            while(! ( expresionArbol.substring(j,j+1).equals("(") ) && !(expresionArbol.substring(j,j+1).equals(")") )){
+                j=j+1;
+            }
+            Vertice v;
+            v = new Vertice(Integer.toString(i), Double.parseDouble(expresionArbol.substring(i,j)));
+            this.agregarVertice(v);
+            int contadorParentesis = 0;
+            i = j;
+            for (int k=i;k<expresionArbol.length();k++){
+                //System.out.println(contadorParentesis);
 
-            /*Se lee los numeros que se comprobaran luego para verificar si existen
-            caminos de esa longitud*/
+                if( expresionArbol.substring(k,k+1).equals("(") ){
+                    contadorParentesis++;
+                }
 
-            while (in.hasNextLine()){
-                String[] parts = in.nextLine().split(" ");
-                for (int i=0;i<parts.length;i++){
-                    if (parts[i].substring(0,1).equals("(") || parts[i].substring(0,1).equals(")")){
-                        
+                else if( expresionArbol.substring(k,k+1).equals(")") ){
+                    contadorParentesis--;
+                }
+
+                
+
+                else if(! ( expresionArbol.substring(k,k+1).equals("(") ) && !(expresionArbol.substring(k,k+1).equals(")") ) && contadorParentesis==1){
+                    int l = k;
+                    boolean lAumento = false;
+                    while(! ( expresionArbol.substring(l,l+1).equals("(") ) && !(expresionArbol.substring(l,l+1).equals(")") )){
+                        l=l+1;
+                        lAumento = true;
+                    }
+                    Vertice v1;
+                    v1 = new Vertice(Integer.toString(k), Double.parseDouble(expresionArbol.substring(k,l)));
+                    this.agregarVertice(v1);
+                    Arco a;
+                    a = new Arco(Integer.toString(numL),(double)numL,v,v1);
+                    this.agregarArco(a);
+                    if (lAumento==true){
+                        k=l-1;
                     }
                     else{
-                        listaVerificarLargoCaminos.add(parts[i]);
-                        
+                        k=l;
                     }
-                    
                 }
+
+                if(contadorParentesis==0){
+                    contadorHijos++;
+                }
+
+                if(contadorHijos==2){
+                    break;
+                }
+
+
+                
+
+
             }
-
-            System.out.println(listaVerificarLargoCaminos);
             
-
+        }
+       }
+       return grafoCargado;
+       
             
-
-
-            return grafoCargado;
-        }
-        catch (FileNotFoundException ex) {
-            throw new IllegalArgumentException("No se pudo abrir el archivo: " + dirArchivo);
-        }
     }
 
 /**
@@ -570,6 +602,7 @@ public class GrafoDirigido {
     public List<Vertice> sucesores(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
+
         }
 
         for (int i=0; i<numV; i++) {

@@ -10,6 +10,7 @@ public class Vertice
   private String id;
   private double peso;
   private String representacion;
+  private int sumaAcumulada;
   
   public Vertice(String id, double peso) {
     this.id = id;
@@ -27,5 +28,13 @@ public class Vertice
 
   public String toString() {
     return this.representacion; 
+  }
+
+  public void setSuma(int suma){
+    this.sumaAcumulada = suma;
+  }
+
+  public int getSuma(){
+    return sumaAcumulada;
   }
 }
