@@ -7,12 +7,12 @@ public class SumaArboles{
 		
 		/*Lectura del archivo*/
 
-		LinkedList<String> listaVerificarLargoCaminos;
+		ArrayList<String> listaVerificarLargoCaminos;
 		LinkedList<GrafoDirigido> listaGrafos;
 
 		try {
             Scanner in = new Scanner(new FileReader("pruebaLAB5.txt"));
-			listaVerificarLargoCaminos = new LinkedList<String>();
+			listaVerificarLargoCaminos = new ArrayList<String>();
 			listaGrafos = new LinkedList<GrafoDirigido>();
 
             /*Se lee los numeros que se comprobaran luego para verificar si existen
@@ -44,56 +44,35 @@ public class SumaArboles{
                 		for (int j=0;j<parts[i].length();j++){
                 			if (parts[i].substring(j,j+1).equals("(")){
                 				contadorParentesisAbiertos++;
-                				
+                                noEsNumero = true;
+
                 			}
                 			else if (parts[i].substring(j,j+1).equals(")")){
                 				contadorParentesisCerrados++;
-
-
                 				noEsNumero = true;
                 			}
 
-                			if(parts[i].substring(0,1).equals("(")){
-                				noEsNumero = true;
-                			}
-
-                			else if(parts[i].substring(0,1).equals("(")){
-                				noEsNumero = true;
-                			}
-
-                			else{
-                				noEsNumero = false;
-                			}
-
+                            else{
+                                noEsNumero=false;
+                            }
                 		}
 
-                		if (noEsNumero==true){
+                		if (noEsNumero){
                 			expresionArbol+=parts[i];
                 		}
 
-                		if (contadorParentesisAbiertos==contadorParentesisCerrados && expresionArbol!=""){
+                		if (contadorParentesisAbiertos==contadorParentesisCerrados && (expresionArbol!="" && expresionArbol!=" ")){
                 			GrafoDirigido miGrafoDirigido = new GrafoDirigido();
-                			miGrafoDirigido.cargarGrafo(expresionArbol);
-                			listaGrafos.add(miGrafoDirigido);
-            				expresionArbol = "";	
-            			}
-
-                	}
-
-
-
-
-            	}
-
+                            miGrafoDirigido.cargarGrafo(expresionArbol);
+                            listaGrafos.add(miGrafoDirigido);
+                            expresionArbol = "";
+                        }
+                    }
+                }
             }
 
+
             /*Se terminan de leer los numeros luego de construir el grafo*/
-
-
-            System.out.println(listaVerificarLargoCaminos);
-            
-
-
         }
         catch (FileNotFoundException ex) {
             throw new IllegalArgumentException("No se pudo abrir el archivo: ");
@@ -110,7 +89,7 @@ public class SumaArboles{
         miBusqueda = new DFSBacktracking();
         boolean solucion;
 
-        /*Inicio de la funcion recursiva que va a hallar si existe el camino de 
+        /*Inicio de la funcion recursiva que va a hallar si existe el camino de
         dicha longitud */
         solucion = miBusqueda.busquedaDFSBacktracking(listaGrafos.get(0),raiz,raiz,cola,0,22);
         System.out.println(solucion);

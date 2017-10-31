@@ -24,6 +24,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @param GrafoDirigido: objeto grafo dirigido
 */
+    @SuppressWarnings("JavadocReference")
     public GrafoDirigido() {
         int numV = 0;
         int numL = 0;
@@ -41,6 +42,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws grafoCargado: boolean, los da tos del archivo se cargaron exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean cargarGrafo(String expresionArbol) {
        boolean grafoCargado = false;
        for (int i=0;i<expresionArbol.length();i++){
@@ -81,7 +83,7 @@ public class GrafoDirigido {
                     Arco a;
                     a = new Arco(Integer.toString(numL),(double)numL,v,v1);
                     this.agregarArco(a);
-                    if (lAumento==true){
+                    if (lAumento){
                         k=l-1;
                     }
                     else{
@@ -118,6 +120,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws numV: int, numero de vertices del grafo
 */
+    @SuppressWarnings("JavadocReference")
     public int numeroDeVertices() {
         return numV;
     }
@@ -130,6 +133,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws numL: int, numero de lados del grafo
 */
+    @SuppressWarnings("JavadocReference")
     public int numeroDeLados() {
         return numL;
     }
@@ -143,6 +147,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws verticeAgregado: boolean, el vertice se ha agregado exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean agregarVertice(Vertice v) {
         for (int i=0; i<numV; i++){
             if (g.get(i).get(0).getId().equals(v.getId())){
@@ -167,6 +172,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws verticeAgregado: boolean, el vertice se ha agregado exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean agregarVertice(String id, double peso) {
         for (int i=0; i<numV; i++){
             if (g.get(i).get(0).getId().equals(id)){
@@ -192,6 +198,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws vertice: objeto vertice
 */
+    @SuppressWarnings("JavadocReference")
     public Vertice obtenerVertice(String id) {
         for (int i=0; i<numV; i++){
             if (g.get(i).get(0).getId().equals(id)){
@@ -210,6 +217,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws esta: boolean, el vertice pertenece al grafo o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean estaVertice(String id) {
         for (int i=0; i<numV; i++){
             if (g.get(i).get(0).getId().equals(id)){
@@ -229,6 +237,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws esta: boolean, el lado se encuentra en el grafo o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean estaLado(String u, String v) {
         for (int i=0; i<numV; i++){
             if (g.get(i).get(0).getId().equals(u)){
@@ -251,6 +260,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws eliminado: boolean, el vertice se ha eliminado exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean eliminarVertice(String id) {
         Vertice v;
         v = this.obtenerVertice(id);
@@ -287,6 +297,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws listaVertices: list, lista con los vertices del grafo g
 */
+    @SuppressWarnings("JavadocReference")
     public List<Vertice> vertices() {
         LinkedList<Vertice> listaVertices;
         listaVertices = new LinkedList<Vertice>();
@@ -304,6 +315,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws listaLados: list, lista con los lados del grafo g
 */
+    @SuppressWarnings("JavadocReference")
     public List<Lado> lados() {
         LinkedList<Lado> listaLados2;
         listaLados2 = new LinkedList<Lado>();
@@ -322,6 +334,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws entero, grado del vertice
 */
+    @SuppressWarnings("JavadocReference")
     public int grado(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
@@ -338,6 +351,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws listaAdyacentes: list, lista con los vertices adyacentes a un vertice
 */
+    @SuppressWarnings("JavadocReference")
     public List<Integer> adyacentes(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
@@ -365,6 +379,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws listaIncidentes: list, lista con los lados incidentes a un vertice
 */
+    @SuppressWarnings("JavadocReference")
     public List<Lado> incidentes(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
@@ -389,6 +404,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws grafito: nuevo grafo
 */
+    @SuppressWarnings("JavadocReference")
     public GrafoDirigido clone() {
         GrafoDirigido grafito = new GrafoDirigido();
         for (int i=0; i<numV; i++) {
@@ -408,6 +424,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws aString: string, representacion del contenido del grafo
 */
+    @SuppressWarnings("JavadocReference")
     public String toString() {
     String aString = new String("");
     aString += numV + "\n" + numL;
@@ -434,6 +451,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws arcoAgregado: boolean, el arco se ha agregado exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean agregarArco(Arco a) {
         Vertice vi;
         Vertice vf;
@@ -470,6 +488,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws arcoAgregado: boolean, el arco se ha agregado exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean agregarArco(String id, double peso, String vi, String vf) {
          if (this.estaVertice(vi) && this.estaVertice(vf)) {
             if (this.estaLado(vi, vf)){
@@ -500,6 +519,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * aristaEliminada: boolean, el arco se ha eliminado exitosamente o caso contrario
 */
+    @SuppressWarnings("JavadocReference")
     public boolean eliminarArco(String id) {
         for (int i=numL-1; i>-1; i--) {
             if (listaLados.get(i).getId().equals(id)) {
@@ -530,6 +550,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws arco, objeto arco
 */
+    @SuppressWarnings("JavadocReference")
     public Arco obtenerArco(String id) {
         for (int i=0; i<numL; i++) {
             if (listaLados.get(i).getId().equals(id)) {
@@ -548,6 +569,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws gradoInterno: int, numero que representa el grado interno del vertice
 */
+    @SuppressWarnings("JavadocReference")
     public int gradoInterior(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
@@ -574,6 +596,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws gradoExterno: int, numero que representa el grado externo del vertice
 */
+    @SuppressWarnings("JavadocReference")
     public int gradoExterior(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
@@ -599,6 +622,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws list, lista de vertices sucesores del vertice dado
 */
+    @SuppressWarnings("JavadocReference")
     public List<Vertice> sucesores(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
@@ -623,6 +647,7 @@ public class GrafoDirigido {
  * Parametros de salida:
  * @throws list, lista de vertices predecesores del vertice dado
 */
+    @SuppressWarnings("JavadocReference")
     public List<Vertice> predecesores(String id) {
         if (!this.estaVertice(id)) {
             throw new NoSuchElementException();
