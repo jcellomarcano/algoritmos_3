@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class SumaArboles{
+public class SumaArboles1{
 
 	public static void main(String[] args) {
 		
@@ -129,16 +129,10 @@ public class SumaArboles{
 
             if (miGrafo.numeroDeVertices()!=0){
                 solucion = miBusqueda.busquedaDFSBacktracking(miGrafo,raiz,raiz,cola,0,verificarSolucion);
+                System.out.println(solucion);
             }
             else{
-                solucion = false;
-            }
-
-            if (solucion){
-                System.out.println("yes");
-            }
-            else{
-                System.out.println("no");
+                System.out.println("false");
             }
             
 	}

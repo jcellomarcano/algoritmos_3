@@ -3,8 +3,11 @@ import java.util.*;
 
 public class DFSBacktracking{
 
-	public DFSBacktracking(){
+    boolean encontradoSols;
+    
 
+	public DFSBacktracking(){
+        encontradoSols = false;
 	}
 	/*La funcion recibe el grafo a donde se va aplicar, 
 	el vertice donde va a comenzar, en este caso la raiz, la pila, la suma de los pesos y la solucion con la que iremos comprobando */
@@ -65,7 +68,7 @@ public class DFSBacktracking{
             }
 
         }
-        boolean encontradoSols = false;
+        
         if (esSolucion!= true){
             return encontradoSols;
         }
