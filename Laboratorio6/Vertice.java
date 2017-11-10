@@ -54,7 +54,16 @@ public class Vertice
     this.padre = padre;
   }
 
+  public Vertice getPadre(){
+    return this.padre;
+  }
+
   public void setVisto(boolean visto){
     this.visto = visto;
   }
+
+  public boolean getVisto(){
+    return this.visto;
+  }
+
 }

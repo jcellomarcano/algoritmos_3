@@ -149,7 +149,7 @@ public class GrafoNoDirigido implements Grafo{
 
             /*Creamos nuestra Arista*/
             distancia = Math.sqrt(Math.pow(nuevoVerticeInicial.getPosX() - nuevoVerticeFinal.getPosX(),2) + Math.pow(nuevoVerticeInicial.getPosY() - nuevoVerticeFinal.getPosY(),2));
-            nuevaArista = new Arista(Integer.toString(i),distancia,nuevoVerticeInicial,nuevoVerticeFinal);
+            nuevaArista = new Arista(nuevoVerticeInicial.getId()+nuevoVerticeFinal.getId(),distancia,nuevoVerticeInicial,nuevoVerticeFinal);
             nuevoNodo = new Nodo (nuevoVerticeFinal,nuevaArista);
             nuevoNodo2 = new Nodo (nuevoVerticeInicial,nuevaArista); //Para agregar tambien la relacion al otro lado
 
@@ -965,7 +965,6 @@ public class GrafoNoDirigido implements Grafo{
 
     public Arista obtenerArista(String id) throws RuntimeException{
 
-        try{
 
         Arista aristaABuscar;
         aristaABuscar = null;
@@ -982,21 +981,16 @@ public class GrafoNoDirigido implements Grafo{
                                                 iterador.getLado().getPeso(),
                                                 item.getVertice(),
                                                 iterador.getVertice());
-                        return aristaABuscar;
+                        
                     }
                     iterador = iterador.getSiguiente();
                 }
+
             }
         }
-        throw new NoSuchElementException();
-        }
 
-        catch(NoSuchElementException e){
-            System.out.println("Se ha producido un error, no se encontro el vertice con id: " + id);
-            return null;
-        }
-
-        
+        return aristaABuscar;
+   
     }
 
 /**
