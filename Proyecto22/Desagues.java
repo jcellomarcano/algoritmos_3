@@ -9,5 +9,7 @@ public class Desagues{
 		miGrafo = new GrafoDirigido();
 		miGrafo.cargarGrafo("prueba.txt");
 		System.out.println(miGrafo.toString());
+		System.out.println(miGrafo.vertices());
+		System.out.println(miGrafo.lados());
 	}
 }

@@ -23,7 +23,7 @@ public class Mesero{
 
 			GrafoNoDirigido miGrafo;
 			miGrafo	= new GrafoNoDirigido();
-			miGrafo.cargarGrafo(arg[0]);
+			miGrafo.cargarGrafo(args[0]);
 			Nodo nodoRaiz;
 			System.out.println(miGrafo.toString());
 			System.out.println();
@@ -42,8 +42,9 @@ public class Mesero{
 
 			for (Vertice iterador : listaDeVertices){
 				listaPadres1 = miDijkstra.reconstruirCamino(iterador,listaPadres);
-				System.out.println("Nodo " + iterador.getId() + );
+				System.out.println("Nodo " + iterador.getId() + "");
 
+				System.out.println(listaPadres1);
 			}
 		}
 		
