@@ -11,5 +11,7 @@ public class Desagues{
 		System.out.println(miGrafo.toString());
 		System.out.println(miGrafo.vertices());
 		System.out.println(miGrafo.lados());
+        System.out.println("\n");
+        System.out.println(miGrafo.sucesores("00 3.0"));
 	}
 }

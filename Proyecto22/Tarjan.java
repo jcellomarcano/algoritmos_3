@@ -29,21 +29,35 @@ public class Tarjan {
         // Pasamos a aplicarles tarjan al Grafo, recorriendo todos sus nodos
         for (int nodo = 0; nodo < this.miGrafito.vertices().size(); nodo++) {
             if (this.indice[nodo] == 0) ;
-            aplicaTarjan(miGrafito.vertices().get(nodo));
+            aplicaTarjan(nodo);
             }
     }
 
-        /**
+    /**
          * A partir de aqui empezamos a crear la funciona Tarjan que se encargara de
          * devolerme las componentes fuertemente conexas
          * @param nodo
          */
 
-        public void aplicaTarjan(Vertice nodo){
+        public void aplicaTarjan(int nodo){
 
             //creamos un iterador para buscar dentro de la profundidad de todos los sucesores de cada nodo
+            Iterator<Vertice> sucesores = this.miGrafito.sucesores(String.valueOf(miGrafito.vertices().get(nodo))).iterator();
+            Vertice sucesor;
 
-            ListIterator<Lado> sucesores = this.miGrafito.sucesores(Integer.toString(nodo)).iterator();
+            this.indice[nodo] = this.centinela;
+            this.menor[nodo] = this.centinela++;
+            this.pilaVertice.add(nodo);
+            this.estaEnPila[nodo] = true;
+
+            //Mientras haya sucesores que ver
+            while (sucesores.hasNext()){
+                sucesor = sucesores.next();
+
+                //Si ya vimos este nddo
+            //      if (this.indice[sucesor])
+            }
+
     }
 }
 
