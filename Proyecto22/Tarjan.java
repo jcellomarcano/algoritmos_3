@@ -54,7 +54,7 @@ public class Tarjan {
             while (sucesores.hasNext()){
                 sucesor = sucesores.next();
                 //Si ya vimos este nddo
-                if (this.indice[Integer.parseInt(sucesor.getId())] == 0){
+                if (this.indice[Integer.parseInt(sucesor.getId())] == 00){
                     creaTarjan(Integer.parseInt(sucesor.getId()));
                     this.menor[nodo] = Math.min(this.menor[nodo],Integer.parseInt(sucesor.getId()));
                 } else if (this.estaEnPila[Integer.parseInt(sucesor.getId())]){
