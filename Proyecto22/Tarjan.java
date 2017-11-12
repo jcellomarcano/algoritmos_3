@@ -29,7 +29,7 @@ public class Tarjan {
         // Pasamos a aplicarles tarjan al Grafo, recorriendo todos sus nodos
         for (int nodo = 0; nodo < this.miGrafito.vertices().size(); nodo++) {
             if (this.indice[nodo] == 0) ;
-            aplicaTarjan(nodo);
+                creaTarjan(nodo);
             }
     }
 
@@ -39,25 +39,46 @@ public class Tarjan {
          * @param nodo
          */
 
-        public void aplicaTarjan(int nodo){
+        public void creaTarjan(int nodo){
 
             //creamos un iterador para buscar dentro de la profundidad de todos los sucesores de cada nodo
-            Iterator<Vertice> sucesores = this.miGrafito.sucesores(String.valueOf(miGrafito.vertices().get(nodo))).iterator();
+            Iterator<Vertice> sucesores = this.miGrafito.sucesores(String.valueOf(miGrafito.vertices().get(nodo).getId())).iterator();
+            System.out.println(sucesores);
             Vertice sucesor;
 
             this.indice[nodo] = this.centinela;
             this.menor[nodo] = this.centinela++;
             this.pilaVertice.add(nodo);
             this.estaEnPila[nodo] = true;
-
             //Mientras haya sucesores que ver
             while (sucesores.hasNext()){
                 sucesor = sucesores.next();
-
                 //Si ya vimos este nddo
-            //      if (this.indice[sucesor])
+                if (this.indice[Integer.parseInt(sucesor.getId())] == 0){
+                    creaTarjan(Integer.parseInt(sucesor.getId()));
+                    this.menor[nodo] = Math.min(this.menor[nodo],Integer.parseInt(sucesor.getId()));
+                } else if (this.estaEnPila[Integer.parseInt(sucesor.getId())]){
+                    this.menor[nodo] = Math.min(this.menor[nodo],Integer.parseInt(sucesor.getId()));
+                }
+            }
+            if (this.menor[nodo] == this.indice[nodo]){
+                int componente = this.menor[nodo];
+
+                //Desempilamos los elementos que hemos metido en la pola
+                //tales que perenencen en la misma componente hasta que lleguen al nodo que llama al metodo
+                do {
+                    sucesor = miGrafito.sucesores(String .valueOf(this.pilaVertice.get(this.pilaVertice.size()-1))).get(nodo);
+                    this.pilaVertice.remove(this.pilaVertice.size());
+                    this.estaEnPila[Integer.parseInt(sucesor.getId())] = false;
+                }while (nodo != Integer.parseInt(sucesor.getId()));
             }
 
+    }
+    /*
+    Retorna las compoentes conexas
+     */
+    public int[] obtenerComponentes(){
+        return this.componentesConex;
     }
 }
 

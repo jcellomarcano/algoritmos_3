@@ -12,7 +12,13 @@ public class Desagues{
 		System.out.println(miGrafo.vertices());
 		System.out.println(miGrafo.lados());
         System.out.println("\n");
-        System.out.println(miGrafo.sucesores("00 3.0"));
+
+        Tarjan tar = new Tarjan(miGrafo);
+        
+        //System.out.println(miGrafo.sucesores("0").iterator().hasNext());
+        long c = 00;
+        c =+ 1;
+        System.out.println(c);
 
 	}
 }
