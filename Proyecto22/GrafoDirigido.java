@@ -627,16 +627,20 @@ public class GrafoDirigido implements Grafo {
             throw new NoSuchElementException();
         }
 
-        for (int i=0; i<numV; i++) {
-            if (g.get(i).get(0).getId().equals(id)) {
-                return g.get(i).subList(1, g.get(i).size());
+        LinkedList<Vertice> listaSucesores;
+        listaSucesores = new LinkedList<Vertice>();
+
+        for (Arco iterador : listaLados){
+            if (iterador.getExtremoInicial().getId().equals(id)){
+                listaSucesores.add(iterador.getExtremoFinal());
             }
         }
-        return g.get(0);
+        return listaSucesores;
 
     }
 
-/**
+
+    /**
  * predecesores:
  * Devuelve una lista con los vertices predecesores del vertice con identificador id
  * Parametros de entrada:
