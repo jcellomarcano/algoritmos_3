@@ -52,7 +52,10 @@ public class Tarjan {
             //Mientras haya sucesores que ver
             while (sucesores.hasNext()){
                 sucesor = sucesores.next();
-                //Si ya vimos este nddo
+                //Si ya vimos este nddo 
+                //blallalala
+                /*
+                */
                 if (this.indice[sucesor.getIndice()] == 0){
                     creaTarjan(sucesor.getIndice());
                     this.menor[nodo] = Math.min(this.menor[nodo],sucesor.getIndice());
