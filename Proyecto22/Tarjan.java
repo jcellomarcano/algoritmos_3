@@ -71,6 +71,21 @@ public class Tarjan {
         return this.componentesConex;
     }
 
+    public boolean fuerteConexa(Vertice v, Vertice w){
+        validarVertice(v);
+        validarVertice(w);
+        return this.indice[v.getIndice()] == this.indice[w.getIndice()];
+    }
+    public int id(Vertice v){
+        validarVertice(v);
+        return this.indice[v.getIndice()];
+    }
+    private void validarVertice(Vertice v){
+        int V = this.estaEnPila.length;
+        if(v.getIndice() < 0 || v.getIndice() >= V)
+            throw new IllegalArgumentException("vertice"  + v + "no se encuentra entre 0 and" + (V-1));
+    }
+
 }
     /*
     Retorna el numero las compoentes conexas
