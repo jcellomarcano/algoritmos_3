@@ -4,12 +4,12 @@ import java.util.*;
  * Created by J&J  on 11/11/2017.
  */
 public class Tarjan {
-    private int centinela;
-    private List<Integer> pilaVertice;
-    private int[] componentesConex;
+    private boolean[] estaEnPila;
     private int[] indice;
     private int[] menor;
-    private boolean[] estaEnPila;
+    private int[] componentesConex;
+    private int centinela;
+    private List<Integer> pilaVertice;
     private GrafoDirigido miGrafito;
 
     /**
@@ -18,16 +18,16 @@ public class Tarjan {
      */
 
     public Tarjan(GrafoDirigido grafo){
-        this.centinela = 0;
+        this.estaEnPila = new boolean[grafo.numeroDeVertices()];
         this.pilaVertice = new ArrayList<Integer>();
-        this.componentesConex = new int[grafo.numeroDeVertices()];
         this.indice = new int[grafo.numeroDeVertices()];
         this.menor = new int[grafo.numeroDeVertices()];
-        this.estaEnPila = new boolean[grafo.numeroDeVertices()];
+        this.componentesConex = new int[grafo.numeroDeVertices()];
+        this.centinela = 0;
         this.miGrafito = grafo;
 
         // Pasamos a aplicarles tarjan al Grafo, recorriendo todos sus nodos
-        for (int nodo = 0; nodo < this.miGrafito.vertices().size(); nodo++) {
+        for (int nodo = 0; nodo < this.miGrafito.numeroDeVertices(); nodo++) {
             if (this.indice[nodo] == 0) ;
                 creaTarjan(nodo);
             }
@@ -66,7 +66,7 @@ public class Tarjan {
                 //Desempilamos los elementos que hemos metido en la pola
                 //tales que perenencen en la misma componente hasta que lleguen al nodo que llama al metodo
                 do {
-                    sucesor = miGrafito.sucesores(String .valueOf(this.pilaVertice.get(this.pilaVertice.size()-1))).get(nodo);
+                    sucesor = this.pilaVertice.get(this.pilaVertice.size() - 1)
                     this.pilaVertice.remove(this.pilaVertice.size());
                     this.estaEnPila[Integer.parseInt(sucesor.getId())] = false;
                 }while (nodo != Integer.parseInt(sucesor.getId()));
