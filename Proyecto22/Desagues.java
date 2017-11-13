@@ -15,9 +15,6 @@ public class Desagues{
         System.out.println("\n");
 		*/
         Tarjan tar = new Tarjan(miGrafo);
-        
-        for (Vertice iterador : miGrafo.vertices()){
-        	System.out.println(iterador.getIndice());
-        }
+
 	}
 }

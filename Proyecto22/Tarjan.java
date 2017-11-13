@@ -7,9 +7,9 @@ public class Tarjan {
     private boolean[] estaEnPila;
     private int[] indice;
     private int[] menor;
-    private int[] componentesConex;
-    private int centinela;
-    private List<Integer> pilaVertice;
+    private int centinela;          // pre contador
+    private Stack<Integer> pilaVertice;
+    private int componentesConex;   // contador
     private GrafoDirigido miGrafito;
 
     /**
@@ -20,16 +20,15 @@ public class Tarjan {
 
     public Tarjan(GrafoDirigido grafo){
         this.estaEnPila = new boolean[grafo.numeroDeVertices()];
-        this.pilaVertice = new ArrayList<Integer>();
+        this.pilaVertice = new Stack<Integer>();
         this.indice = new int[grafo.numeroDeVertices()];
         this.menor = new int[grafo.numeroDeVertices()];
-        this.componentesConex = new int[grafo.numeroDeVertices()];
         this.miGrafito = grafo;
 
         // Pasamos a aplicarles tarjan al Grafo, recorriendo todos sus nodos
-        for (int nodo = 0; nodo < this.miGrafito.numeroDeVertices(); nodo++) {
-            if (this.indice[nodo] == 0) ;
-                creaTarjan(nodo);
+        for (Vertice iterador : this.miGrafito.vertices() ) {
+            if (!this.estaEnPila[iterador.getIndice()]) ;
+                creaTarjan(iterador);
             }
     }
 
@@ -39,50 +38,45 @@ public class Tarjan {
          * @param nodo
          */
 
-        public void creaTarjan(int nodo){
-
+        public void creaTarjan(Vertice nodo){
+            this.estaEnPila[nodo.getIndice()] = true; // visitados
+            this.menor[nodo.getIndice()] = this.centinela++;
+            int min = this.menor[nodo.getIndice()];
+            this.pilaVertice.push(nodo.getIndice());
             //creamos un iterador para buscar dentro de la profundidad de todos los sucesores de cada nodo
-            Iterator<Vertice> sucesores = this.miGrafito.sucesores(String.valueOf(miGrafito.vertices().get(nodo).getId())).iterator();
-            Vertice sucesor;
-
-            this.indice[nodo] = this.centinela;
-            this.menor[nodo] = this.centinela++;
-            this.pilaVertice.add(nodo);
-            this.estaEnPila[nodo] = true;
-            //Mientras haya sucesores que ver
-            while (sucesores.hasNext()){
-                sucesor = sucesores.next();
-                //Si ya vimos este nddo 
-                //blallalala
-                /*
-                */
-                if (this.indice[sucesor.getIndice()] == 0){
-                    creaTarjan(sucesor.getIndice());
-                    this.menor[nodo] = Math.min(this.menor[nodo],sucesor.getIndice());
-                } else if (this.estaEnPila[sucesor.getIndice()]){
-                    this.menor[nodo] = Math.min(this.menor[nodo],sucesor.getIndice());
+            for (Vertice w: this.miGrafito.sucesores(nodo.getId())) {
+                if(!estaEnPila[w.getIndice()]){
+                    creaTarjan(w);
                 }
-            }
-            if (this.menor[nodo] == this.indice[nodo]){
-                int componente = this.menor[nodo];
+                if (this.menor[w.getIndice()] < min){
+                    min = this.menor[w.getIndice()];
+                }
 
+            }
+            if (min == this.menor[nodo.getIndice()]) {
+                this.menor[nodo.getIndice()] = min;
+                return;
+            }
                 //Desempilamos los elementos que hemos metido en la pola
                 //tales que perenencen en la misma componente hasta que lleguen al nodo que llama al metodo
+                Vertice w;
                 do {
-                    sucesor = this.pilaVertice.get(this.pilaVertice.size() - 1)
-                    this.pilaVertice.remove(this.pilaVertice.size());
-                    this.estaEnPila[Integer.parseInt(sucesor.getId())] = false;
-                }while (nodo != Integer.parseInt(sucesor.getId()));
-            }
-
+                    w = this.miGrafito.obtenerVerticePorInx(this.pilaVertice.pop());
+                    this.indice[w.getIndice()] = this.componentesConex;
+                    this.menor[w.getIndice()] = this.miGrafito.numeroDeVertices();
+                }while (w.getIndice() != nodo.getIndice());
+               this.componentesConex++;
     }
-    /*
-    Retorna las compoentes conexas
-     */
-    public int[] obtenerComponentes(){
+    public int componenteConexa(){
         return this.componentesConex;
     }
+
 }
+    /*
+    Retorna el numero las compoentes conexas
+     */
+
+
 
 
 
