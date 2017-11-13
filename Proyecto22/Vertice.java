@@ -10,6 +10,7 @@ public class Vertice
   private String id;
   private double peso;
   private String representacion;
+  private int indice;
 
   
   public Vertice(String id, double peso) {
@@ -28,6 +29,14 @@ public class Vertice
 
   public String toString() {
     return this.representacion; 
+  }
+
+  public int getIndice(){
+    return this.indice;
+  }
+
+  public void setIndice(int indice){
+    this.indice = indice;
   }
 
 }

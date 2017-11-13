@@ -48,12 +48,16 @@ public class GrafoDirigido implements Grafo {
 
             boolean grafoCargado;
             double altura;
+            int contador1;
+            contador1 = 0;
 
             for (int i=0; i<numFilas; i++) {
                 for (int j=0; j<numColumnas;j++){
                     altura = Double.parseDouble(in.next());
                     Vertice verticeAAgregar;
                     verticeAAgregar = new Vertice(Integer.toString(i)+Integer.toString(j), altura);
+                    verticeAAgregar.setIndice(contador1);
+                    contador1++;
                     agregarVertice(verticeAAgregar);
                 }
                 

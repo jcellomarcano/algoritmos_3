@@ -43,7 +43,6 @@ public class Tarjan {
 
             //creamos un iterador para buscar dentro de la profundidad de todos los sucesores de cada nodo
             Iterator<Vertice> sucesores = this.miGrafito.sucesores(String.valueOf(miGrafito.vertices().get(nodo).getId())).iterator();
-            System.out.println(sucesores);
             Vertice sucesor;
 
             this.indice[nodo] = this.centinela;
@@ -54,11 +53,11 @@ public class Tarjan {
             while (sucesores.hasNext()){
                 sucesor = sucesores.next();
                 //Si ya vimos este nddo
-                if (this.indice[Integer.parseInt(sucesor.getId())] == 00){
-                    creaTarjan(Integer.parseInt(sucesor.getId()));
-                    this.menor[nodo] = Math.min(this.menor[nodo],Integer.parseInt(sucesor.getId()));
-                } else if (this.estaEnPila[Integer.parseInt(sucesor.getId())]){
-                    this.menor[nodo] = Math.min(this.menor[nodo],Integer.parseInt(sucesor.getId()));
+                if (this.indice[sucesor.getIndice()] == 0){
+                    creaTarjan(sucesor.getIndice());
+                    this.menor[nodo] = Math.min(this.menor[nodo],sucesor.getIndice());
+                } else if (this.estaEnPila[sucesor.getIndice()]){
+                    this.menor[nodo] = Math.min(this.menor[nodo],sucesor.getIndice());
                 }
             }
             if (this.menor[nodo] == this.indice[nodo]){
