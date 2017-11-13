@@ -18,6 +18,7 @@ public class Desagues{
         Tarjan tar = new Tarjan(miGrafo);
 		int mierda = tar.componenteConexa();
 		System.out.printf(mierda + "componentes");
+        System.out.println();
 
 		LinkedList<Integer>[] componentes = (LinkedList<Integer>[]) new LinkedList[mierda];
 		for (int i = 0; i<mierda; i++){
@@ -29,6 +30,7 @@ public class Desagues{
         }
 
         for (int i = 0; i<mierda; i++){
+            System.out.println("espacio" + i);
             for (int v: componentes[i]) {
                 System.out.println(miGrafo.obtenerVerticePorInx(v) +" ");
             }

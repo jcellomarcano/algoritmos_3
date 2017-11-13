@@ -44,7 +44,7 @@ public class Tarjan {
             int min = this.menor[nodo.getIndice()];
             this.pilaVertice.push(nodo.getIndice());
             //creamos un iterador para buscar dentro de la profundidad de todos los sucesores de cada nodo
-            for (Vertice w: this.miGrafito.sucesores(nodo.getId())) {
+            for (Vertice w: this.miGrafito.adyacentes(nodo.getId())) {
                 if(!estaEnPila[w.getIndice()]){
                     creaTarjan(w);
                 }
