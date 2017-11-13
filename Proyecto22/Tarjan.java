@@ -17,13 +17,13 @@ public class Tarjan {
      * Aqui conseguiremos las componentes conexas del grafo
      */
 
+
     public Tarjan(GrafoDirigido grafo){
         this.estaEnPila = new boolean[grafo.numeroDeVertices()];
         this.pilaVertice = new ArrayList<Integer>();
         this.indice = new int[grafo.numeroDeVertices()];
         this.menor = new int[grafo.numeroDeVertices()];
         this.componentesConex = new int[grafo.numeroDeVertices()];
-        this.centinela = 0;
         this.miGrafito = grafo;
 
         // Pasamos a aplicarles tarjan al Grafo, recorriendo todos sus nodos
