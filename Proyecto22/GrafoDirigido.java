@@ -228,6 +228,15 @@ public class GrafoDirigido implements Grafo {
         throw new NoSuchElementException();
     }
 
+    public Vertice obtenerVerticePorInx(int indice) {
+        for (int i=0; i<numV; i++){
+            if (g.get(i).get(0).getIndice() == indice){
+                return g.get(i).get(0);
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
 /**
  * estaVertice:
  * Se indica si un vertice con el identificador id se encuentra o no en el grafo
