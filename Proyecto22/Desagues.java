@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class Desagues{
@@ -15,26 +16,8 @@ public class Desagues{
 		System.out.println(miGrafo.lados());
         System.out.println("\n");
 
-        Tarjan tar = new Tarjan(miGrafo);
-		int mierda = tar.componenteConexa();
-		System.out.printf(mierda + "componentes");
-        System.out.println();
+        List<List<Vertice>> componentes = new Tarjan1().cfc(miGrafo);
+        System.out.println(componentes);
 
-		LinkedList<Integer>[] componentes = (LinkedList<Integer>[]) new LinkedList[mierda];
-		for (int i = 0; i<mierda; i++){
-			componentes[i] = new LinkedList<Integer>();
-
-		}
-        for (int v = 0; v< miGrafo.numeroDeVertices(); v++){
-        	componentes[tar.id(miGrafo.obtenerVerticePorInx(v))].add(v);
-        }
-
-        for (int i = 0; i<mierda; i++){
-            System.out.println("espacio" + i);
-            for (int v: componentes[i]) {
-                System.out.println(miGrafo.obtenerVerticePorInx(v) +" ");
-            }
-            System.out.println();
-        }
 	}
 }

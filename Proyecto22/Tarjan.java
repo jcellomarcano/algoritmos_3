@@ -80,6 +80,8 @@ public class Tarjan {
         validarVertice(v);
         return this.indice[v.getIndice()];
     }
+
+
     private void validarVertice(Vertice v){
         int V = this.estaEnPila.length;
         if(v.getIndice() < 0 || v.getIndice() >= V)
