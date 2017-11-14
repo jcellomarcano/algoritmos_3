@@ -12,6 +12,7 @@ public class Vertice
   private String representacion;
   private int indice;
   private boolean frontera;
+  private boolean desague;
 
   
   public Vertice(String id, double peso) {
@@ -19,6 +20,7 @@ public class Vertice
     this.peso = peso;
     representacion = this.id + " " + this.peso;
     this.frontera = false;
+    this.desague = false;
   }
 
   public double getPeso() {
@@ -47,6 +49,14 @@ public class Vertice
 
   public void setFrontera (boolean frontera){
     this.frontera = frontera;
+  }
+
+  public boolean getDesague(){
+    return this.desague;
+  }
+
+  public void setDesague (boolean frontera){
+    this.desague = desague;
   }
 
 }
