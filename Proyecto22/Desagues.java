@@ -22,14 +22,14 @@ public class Desagues{
 		//System.out.println(miGrafo.lados());
         //System.out.println("\n");
      	
-     	
+
         List<List<Vertice>> componentes = new Tarjan1().cfc(miGrafo);
         //System.out.println(componentes);
         Condiciones soluciones = new Condiciones(componentes,miGrafo);
         LinkedList<List<Vertice>> miListaSoluciones;
         soluciones.verificarCondiciones();
         soluciones.crearMatriz();
-        
+
 
 	}
 }

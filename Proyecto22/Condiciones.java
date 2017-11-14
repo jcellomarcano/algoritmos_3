@@ -53,7 +53,7 @@ public class Condiciones {
                  }
              }
 
-             if (esSolucion) {
+             if (esSolucion) { 
                  this.listaSolucion.add(iterador);
              }
          }
@@ -107,7 +107,7 @@ public class Condiciones {
             System.out.println();
         }
 
-        //System.out.println(listaSolucion);
+        System.out.println(listaSolucion);
     }
 
 
