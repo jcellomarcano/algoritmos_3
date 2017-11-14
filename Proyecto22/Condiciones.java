@@ -14,7 +14,7 @@ public class Condiciones {
         this.grafo = grafo;
         this.listaSolucion = new LinkedList<List<Vertice>>();
     }
-    public void verificarCondiciones(){
+    public LinkedList<List<Vertice>> verificarCondiciones(){
          externo: for (List<Vertice> iterador : componentes) {
              int contador = 0;
              boolean[] arregloSolucionFuerte = new boolean[iterador.size()];
@@ -64,6 +64,12 @@ public class Condiciones {
              }
           }
 
+        return listaSolucion;
+
+    }
+
+    public void crearMatriz(){
+
 
         String[][] matriz;
 
@@ -103,6 +109,8 @@ public class Condiciones {
 
         //System.out.println(listaSolucion);
     }
+
+
     public LinkedList<List<Vertice>> getSolucion(){return this.listaSolucion;}
 
 }

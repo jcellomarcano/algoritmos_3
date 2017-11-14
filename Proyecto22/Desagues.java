@@ -29,6 +29,7 @@ public class Desagues{
         LinkedList<List<Vertice>> miListaSoluciones;
         soluciones.verificarCondiciones();
         miListaSoluciones = soluciones.getSolucion();
+        soluciones.crearMatriz();
         
 
 	}
