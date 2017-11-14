@@ -10,15 +10,17 @@ public class Desagues{
 		GrafoDirigido miGrafo;
 		miGrafo = new GrafoDirigido();
 		miGrafo.cargarGrafo("prueba.txt");
-
+        /*
 		System.out.println(miGrafo.toString());
 		System.out.println(miGrafo.vertices());
 
 		System.out.println(miGrafo.lados());
         System.out.println("\n");
-
+        */
         List<List<Vertice>> componentes = new Tarjan1().cfc(miGrafo);
         System.out.println(componentes);
+        Condiciones soluciones = new Condiciones(componentes,miGrafo);
+        soluciones.verificarCondiciones();
 
 	}
 }
