@@ -88,6 +88,11 @@ public class GrafoDirigido implements Grafo {
                         contador++;
                     }
                 }
+
+                else{
+                    iterador.setFrontera(true);
+                }
+
                 if (!posX.equals(Integer.toString(numColumnas-1))){
                     Vertice verticeAComprobar;
                     String posX2;
@@ -99,6 +104,10 @@ public class GrafoDirigido implements Grafo {
                         this.agregarArco(nuevoArco);
                         contador++;
                     }
+                }
+
+                else{
+                    iterador.setFrontera(true);
                 }
 
                 if (!posY.equals("0")){
@@ -114,6 +123,10 @@ public class GrafoDirigido implements Grafo {
                     }
                 }
 
+                else{
+                    iterador.setFrontera(true);
+                }
+
                 if (!posY.equals(Integer.toString(numFilas-1))){
                     Vertice verticeAComprobar;
                     String posY2;
@@ -125,6 +138,10 @@ public class GrafoDirigido implements Grafo {
                         this.agregarArco(nuevoArco);
                         contador++;
                     }
+                }
+
+                else{
+                    iterador.setFrontera(true);
                 }
 
             }

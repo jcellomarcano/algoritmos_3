@@ -13,6 +13,7 @@ public class Desagues{
 
 		System.out.println(miGrafo.toString());
 		System.out.println(miGrafo.vertices());
+
 		System.out.println(miGrafo.lados());
         System.out.println("\n");
 
