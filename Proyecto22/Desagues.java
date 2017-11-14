@@ -20,7 +20,8 @@ public class Desagues{
         List<List<Vertice>> componentes = new Tarjan1().cfc(miGrafo);
         System.out.println(componentes);
         Condiciones soluciones = new Condiciones(componentes,miGrafo);
-        soluciones.verificarCondiciones();
+        List<List<Vertice>> miListaSoluciones;
+        miListaSoluciones = soluciones.verificarCondiciones();
 
 	}
 }

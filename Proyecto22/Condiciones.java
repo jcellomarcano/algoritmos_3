@@ -8,11 +8,13 @@ import java.util.List;
 public class Condiciones {
     List<List<Vertice>> componentes;
     GrafoDirigido grafo;
+    List<List<Vertice>> listaSolucion;
+
     public Condiciones(List<List<Vertice>> componentes, GrafoDirigido grafo){
         this.componentes = componentes;
         this.grafo = grafo;
     }
-    public void verificarCondiciones(){
+    public List<List<Vertice>> verificarCondiciones(){
          externo: for (List<Vertice> iterador : componentes) {
              int contador = 0;
              boolean[] arregloSolucionFuerte = new boolean[iterador.size()];
@@ -56,8 +58,10 @@ public class Condiciones {
             }
 
             if (esSolucion){
-                System.out.println("SoyLa componente" + iterador +"Soy solucions :D!!!!!");
+                this.listaSolucion.add(iterador);
             }
         }
+
+        return this.listaSolucion;
     }
 }
