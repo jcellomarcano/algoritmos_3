@@ -59,9 +59,11 @@ public class GrafoDirigido implements Grafo {
             for (int i=0; i<numFilas; i++) {
                 for (int j=0; j<numColumnas;j++){
                     altura = Double.parseDouble(in.next());
+                    String idVertice = Integer.toString(i)+"i"+Integer.toString(j)+"j";
+                    
                     Vertice verticeAAgregar;
-                    verticeAAgregar = new Vertice(Integer.toString(i)+"i"+Integer.toString(j)+"j", altura);
-                    verticeAAgregar.setIndice(numV);
+                    verticeAAgregar = new Vertice(idVertice, altura);
+                    verticeAAgregar.setIndice((i*numColumnas) + j);
                     contador1++;
                     confirmacion = agregarVertice(verticeAAgregar);
                 }
@@ -95,7 +97,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posX2;
                     posX2 = Integer.toString(Integer.parseInt(posX) - 1);
-                    verticeAComprobar = obtenerVertice(posY+"i"+posX2+"j");
+                    verticeAComprobar = g.get((Integer.parseInt(posY)*numColumnas)+Integer.parseInt(posX2)).get(0);
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -112,7 +114,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posX2;
                     posX2 = Integer.toString(Integer.parseInt(posX) + 1);
-                    verticeAComprobar = obtenerVertice(posY+"i"+posX2+"j");
+                    verticeAComprobar = g.get((Integer.parseInt(posY)*numColumnas)+Integer.parseInt(posX2)).get(0);
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -129,7 +131,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posY2;
                     posY2 = Integer.toString(Integer.parseInt(posY) - 1);
-                    verticeAComprobar = obtenerVertice(posY2+"i"+posX+"j");
+                    verticeAComprobar = g.get((Integer.parseInt(posY2)*numColumnas)+Integer.parseInt(posX)).get(0);
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -146,7 +148,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posY2;
                     posY2 = Integer.toString(Integer.parseInt(posY) + 1);
-                    verticeAComprobar = obtenerVertice(posY2+"i"+posX+"j");
+                    verticeAComprobar = g.get((Integer.parseInt(posY2)*numColumnas)+Integer.parseInt(posX)).get(0);
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -203,11 +205,7 @@ public class GrafoDirigido implements Grafo {
  * @throws verticeAgregado: boolean, el vertice se ha agregado exitosamente o caso contrario
 */
     public boolean agregarVertice(Vertice v) {
-        for (int i=0; i<numV; i++){
-            if (g.get(i).get(0).getId().equals(v.getId())){
-                return false;
-            }
-        }
+
         numV = numV + 1;
         LinkedList<Vertice> aux;
         aux = new LinkedList<Vertice>();
@@ -227,11 +225,6 @@ public class GrafoDirigido implements Grafo {
  * @throws verticeAgregado: boolean, el vertice se ha agregado exitosamente o caso contrario
 */
     public boolean agregarVertice(String id, double peso) {
-        for (int i=0; i<numV; i++){
-            if (g.get(i).get(0).getId().equals(id)){
-                return false;
-            }
-        }
         numV = numV + 1;
         Vertice v = new Vertice(id, peso);
         LinkedList<Vertice> aux;
@@ -252,21 +245,26 @@ public class GrafoDirigido implements Grafo {
  * @throws vertice: objeto vertice
 */
     public Vertice obtenerVertice(String id) {
-        for (int i=0; i<numV; i++){
-            if (g.get(i).get(0).getId().equals(id)){
-                return g.get(i).get(0);
+        int posX;
+        int posY;
+        
+        int k = 0;
+        posY = 0;
+        while (k!=id.length()){
+            if (id.substring(k,k+1).equals("i")){
+                posY = Integer.parseInt(id.substring(0,k));
+                break;
             }
+            k++;
+                    
         }
-        throw new NoSuchElementException();
+        posX = Integer.parseInt(id.substring(k+1,id.length()-1));
+
+        return g.get((posY*numColumnas)+posX).get(0);
     }
 
     public Vertice obtenerVerticePorInx(int indice) {
-        for (int i=0; i<numV; i++){
-            if (g.get(i).get(0).getIndice() == indice){
-                return g.get(i).get(0);
-            }
-        }
-        throw new NoSuchElementException();
+        return g.get(indice).get(0);
     }
 
 /**
@@ -508,22 +506,13 @@ public class GrafoDirigido implements Grafo {
         vi = a.getExtremoInicial();
         vf = a.getExtremoFinal();
 
-        if (this.estaVertice(vi.getId()) && this.estaVertice(vf.getId())) {
-            if (this.estaLado(vi.getId(), vf.getId())){
-                return false;
-            }
-            else {
-                for (int i=0; i<numV; i++) {
-                    if (g.get(i).get(0).getId().equals(vi.getId())) {
-                        g.get(i).add(vf);
-                    }
-                                }
-                listaLados.add(a);
-                numL = numL + 1;
-                return true;
-            }
-        }
-        return false;
+
+        g.get(vi.getIndice()).add(vf);
+
+        listaLados.add(a);
+        numL = numL + 1;
+        return true;
+
     }
 
 /**
@@ -628,7 +617,7 @@ public class GrafoDirigido implements Grafo {
                 if (g.get(i).get(j).getId().equals(id)) {
                     gradoInterno = gradoInterno + 1;
                 }
-            }
+            } 
         }
         return gradoInterno;
     }

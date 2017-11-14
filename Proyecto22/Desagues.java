@@ -28,7 +28,6 @@ public class Desagues{
         Condiciones soluciones = new Condiciones(componentes,miGrafo);
         LinkedList<List<Vertice>> miListaSoluciones;
         soluciones.verificarCondiciones();
-        miListaSoluciones = soluciones.getSolucion();
         soluciones.crearMatriz();
         
 
