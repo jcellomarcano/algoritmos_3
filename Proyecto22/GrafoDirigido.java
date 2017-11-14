@@ -13,6 +13,8 @@ public class GrafoDirigido implements Grafo {
 
     private int numV;
     private int numL;
+    private int numColumnas;
+    private int numFilas;
     private LinkedList<LinkedList<Vertice>> g;
     private LinkedList<Arco> listaLados;
 
@@ -25,6 +27,8 @@ public class GrafoDirigido implements Grafo {
     public GrafoDirigido() {
         numV = 0;
         numL = 0;
+        numColumnas = 0;
+        numFilas = 0;
         g = new LinkedList<LinkedList<Vertice>>();
         listaLados = new LinkedList<Arco>();
     }
@@ -42,9 +46,9 @@ public class GrafoDirigido implements Grafo {
         try {
             Scanner in = new Scanner(new FileReader(dirArchivo));
 
-            int numFilas = Integer.parseInt(in.next());
+            this.numFilas = Integer.parseInt(in.next());
 
-            int numColumnas = Integer.parseInt(in.next());
+            this.numColumnas = Integer.parseInt(in.next());
 
             boolean grafoCargado;
             double altura;
@@ -694,6 +698,14 @@ public class GrafoDirigido implements Grafo {
             }
         }
         return listaPredecesores;
+    }
+
+    public int getNumColumnas(){
+        return this.numColumnas;
+    }
+
+    public int getNumFilas(){
+        return  this.numFilas;
     }
 
 

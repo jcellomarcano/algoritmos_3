@@ -55,7 +55,7 @@ public class Vertice
     return this.desague;
   }
 
-  public void setDesague (boolean frontera){
+  public void setDesague (boolean desague){
     this.desague = desague;
   }
 

@@ -9,7 +9,7 @@ public class Desagues{
 		
 		GrafoDirigido miGrafo;
 		miGrafo = new GrafoDirigido();
-		miGrafo.cargarGrafo("prueba.txt");
+		miGrafo.cargarGrafo("instancia5.txt");
         /*
 		System.out.println(miGrafo.toString());
 		System.out.println(miGrafo.vertices());
@@ -20,8 +20,9 @@ public class Desagues{
         List<List<Vertice>> componentes = new Tarjan1().cfc(miGrafo);
         System.out.println(componentes);
         Condiciones soluciones = new Condiciones(componentes,miGrafo);
-        List<List<Vertice>> miListaSoluciones;
-        miListaSoluciones = soluciones.verificarCondiciones();
+        LinkedList<List<Vertice>> miListaSoluciones;
+        soluciones.verificarCondiciones();
+        miListaSoluciones = soluciones.getSolucion();
 
 	}
 }
