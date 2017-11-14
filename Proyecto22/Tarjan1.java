@@ -1,7 +1,10 @@
 import java.util.*;
 
 /**
- * Created by J&J  on 11/11/2017.
+ * Created by Jesus Marcano 12-10359
+ * Jose Basanta 13-10125
+ * Clase Tarjan, la cual se encarga de generar todas las componentes conexas posibles a solucion, para despues generar el espacio solucion de la que si  son validas
+ * on 11/11/2017.
  */
 public class Tarjan1 {
     GrafoDirigido grafo;
@@ -47,13 +50,17 @@ public class Tarjan1 {
             List<Vertice> componente = new ArrayList<>();
             while (true){
                 Vertice x = pila.pop();
-                componente.add(x);
+                if(!x.getFrontera()){
+                    componente.add(x);
+                }
                 menorEnlace[x.getIndice()] = Integer.MAX_VALUE;
                 if (x.equals(u)){
                     break;
                 }
             }
-            componentes.add(componente);
+            if (componente.size() > 0) {
+                componentes.add(componente);
+            }
         }
     }
 }
