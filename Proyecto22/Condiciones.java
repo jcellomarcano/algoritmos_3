@@ -70,10 +70,24 @@ public class Condiciones {
         matriz = new String[grafo.getNumFilas()][grafo.getNumColumnas()];
         for (Vertice v : grafo.vertices()){
             String idDelVertice = v.getId();
-            int posI = Integer.parseInt(idDelVertice.substring(0,1));
-            int posJ = Integer.parseInt(idDelVertice.substring(1,2));
+
+            int posI=999;
+            int posJ=999;
+
+            int k=0;
+            while (k!=idDelVertice.length()){
+                if (idDelVertice.substring(k,k+1).equals("i")){
+                    posI = Integer.parseInt(idDelVertice.substring(0,k));
+                    break;
+                }
+                k++;
+                    
+            }
+                
+            posJ = Integer.parseInt(idDelVertice.substring(k+1,idDelVertice.length()-1));
+
             if (v.getDesague()){
-                matriz[posI][posJ] = "X";
+                matriz[posI][posJ] = "x";
             }
             else{
                 matriz[posI][posJ] = "0";
@@ -82,7 +96,7 @@ public class Condiciones {
 
         for (int i = 0; i<grafo.getNumFilas(); i++){
             for (int j=0; j<grafo.getNumColumnas();j++){
-                System.out.print(matriz[i][j]);
+                System.out.print(matriz[i][j] + " ");
             }
             System.out.println();
         }

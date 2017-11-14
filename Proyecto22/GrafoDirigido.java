@@ -53,16 +53,17 @@ public class GrafoDirigido implements Grafo {
             boolean grafoCargado;
             double altura;
             int contador1;
+            boolean confirmacion;
             contador1 = 0;
 
             for (int i=0; i<numFilas; i++) {
                 for (int j=0; j<numColumnas;j++){
                     altura = Double.parseDouble(in.next());
                     Vertice verticeAAgregar;
-                    verticeAAgregar = new Vertice(Integer.toString(i)+Integer.toString(j), altura);
-                    verticeAAgregar.setIndice(contador1);
+                    verticeAAgregar = new Vertice(Integer.toString(i)+"i"+Integer.toString(j)+"j", altura);
+                    verticeAAgregar.setIndice(numV);
                     contador1++;
-                    agregarVertice(verticeAAgregar);
+                    confirmacion = agregarVertice(verticeAAgregar);
                 }
                 
             }
@@ -76,15 +77,25 @@ public class GrafoDirigido implements Grafo {
             contador = 0;
             for (Vertice iterador : listaVertices){
                 idVertice = iterador.getId();
-                posY = idVertice.substring(0,1);
-                posX = idVertice.substring(1,2);
+                int k = 0;
+                posY = "";
+                while (k!=idVertice.length()){
+                    if (idVertice.substring(k,k+1).equals("i")){
+                        posY = idVertice.substring(0,k);
+                        break;
+                    }
+                    k++;
+                    
+                }
+                
+                posX = idVertice.substring(k+1,idVertice.length()-1);
                 //System.out.println("PosX: " + posX);
                 //System.out.println("PosY: " + posY);
                 if (!posX.equals("0")){
                     Vertice verticeAComprobar;
                     String posX2;
                     posX2 = Integer.toString(Integer.parseInt(posX) - 1);
-                    verticeAComprobar = obtenerVertice(posY+posX2);
+                    verticeAComprobar = obtenerVertice(posY+"i"+posX2+"j");
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -101,7 +112,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posX2;
                     posX2 = Integer.toString(Integer.parseInt(posX) + 1);
-                    verticeAComprobar = obtenerVertice(posY+posX2);
+                    verticeAComprobar = obtenerVertice(posY+"i"+posX2+"j");
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -118,7 +129,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posY2;
                     posY2 = Integer.toString(Integer.parseInt(posY) - 1);
-                    verticeAComprobar = obtenerVertice(posY2+posX);
+                    verticeAComprobar = obtenerVertice(posY2+"i"+posX+"j");
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
@@ -135,7 +146,7 @@ public class GrafoDirigido implements Grafo {
                     Vertice verticeAComprobar;
                     String posY2;
                     posY2 = Integer.toString(Integer.parseInt(posY) + 1);
-                    verticeAComprobar = obtenerVertice(posY2+posX);
+                    verticeAComprobar = obtenerVertice(posY2+"i"+posX+"j");
                     if (iterador.getPeso()>= verticeAComprobar.getPeso()){
                         Arco nuevoArco;
                         nuevoArco = new Arco(Integer.toString(contador),0, iterador, verticeAComprobar);
