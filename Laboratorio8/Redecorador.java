@@ -53,6 +53,7 @@ public class Redecorador{
 
 
 			System.out.println("Aqui voy a intentar imprimir los caminos de mi A*!:");
+			long tiempoinicialAestrella = System.currentTimeMillis();
 			for (Vertice iterador : listaDeVertices){
 				miAestrella.caminoMasCorto(miGrafo,miGrafo.obtenerNodo(args[1]),miGrafo.obtenerNodo(iterador.getId()));
 				listaPadres2 = miAestrella.reconstruirCamino(iterador);
@@ -68,10 +69,21 @@ public class Redecorador{
 				System.out.print(iterador.getId());
 				System.out.println();
 			}
+			long tiempofinalAestrella = System.currentTimeMillis();
+			System.out.println("EL tiempo que se toma A*: " + (tiempofinalAestrella-tiempoinicialAestrella)/1000 + "s");
+			int contadorVerticesVisitados = 0;
+			for(Vertice iterador : listaDeVertices){
+				if(iterador.getPadre()!=null){
+					contadorVerticesVisitados++;
+				}
+			}
+			System.out.println("Vertices visitados A*: " + contadorVerticesVisitados);
 
 			System.out.println();
 			System.out.println();
 			System.out.println("Aqui empiezo a imprimir lo de Dijkstra del lab pasado: ");
+			miDijkstra.caminoMasCorto(miGrafo,miGrafo.obtenerNodo(args[1]),q);
+			long tiempoinicialDijkstra = System.currentTimeMillis();
 
 			for (Vertice iterador : listaDeVertices){
 				listaPadres1 = miDijkstra.reconstruirCamino(iterador);
@@ -89,7 +101,15 @@ public class Redecorador{
 
 				System.out.println();
 			}
+			long tiempofinalDijkstra = System.currentTimeMillis();
+			System.out.println("EL tiempo que se toma Dijkstra: " + (tiempofinalDijkstra-tiempoinicialDijkstra)/1000 + "s");
 
+			for(Vertice iterador : listaDeVertices){
+				if(iterador.getPadre()!=null){
+					contadorVerticesVisitados++;
+				}
+			}
+			System.out.println("Vertices visitados Dijkstra: " + contadorVerticesVisitados);
 		
 
 			}
