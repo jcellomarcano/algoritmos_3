@@ -79,7 +79,6 @@ public class ColaPrioridad{
 
 		if (iterador!=null){
 			while (contador!=this.tamano){
-				System.out.println(iterador.getNodo().getVertice().getId());
 			if (iterador.getNodo().getVertice().getId().equals( v.getId())){
 				seEncuentra = true;
 				return seEncuentra;

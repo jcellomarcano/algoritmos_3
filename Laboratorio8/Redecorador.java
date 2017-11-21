@@ -37,24 +37,47 @@ public class Redecorador{
 			List<Vertice> listaDeVertices;
 			listaDeVertices = miGrafo.vertices();
 			listaPadres = new LinkedList<Vertice>();
-			LinkedList<Vertice> listaPadres2 = new LinkedList<Vertice>();
+			LinkedList<Vertice> listaPadres2;
 
 
 			miDijkstra.caminoMasCorto(miGrafo,miGrafo.obtenerNodo(args[1]),q);
 
 
+				
+				
+				LinkedList<Vertice> listaPadres1;
+
+
+			int contador = 0;
+			double costo = 0;
+
+
+			System.out.println("Aqui voy a intentar imprimir los caminos de mi A*!:");
 			for (Vertice iterador : listaDeVertices){
-				System.out.println("Aqui va mi A*!! :");
 				miAestrella.caminoMasCorto(miGrafo,miGrafo.obtenerNodo(args[1]),miGrafo.obtenerNodo(iterador.getId()));
 				listaPadres2 = miAestrella.reconstruirCamino(iterador);
-				System.out.println("Aqui voy a intentar imprimir los caminos de mi A*!:");
-				System.out.println(listaPadres2);
-				LinkedList<Vertice> listaPadres1;
-				System.out.println("Aqui empiezo a imprimir lo de Dijkstra del lab pasado: ");
+				System.out.print("Nodo " + iterador.getId() + ": ");
+				contador = 0;
+				costo = 0;
+				while(listaPadres2.size()!=0){
+					Vertice elemento = listaPadres2.removeLast();
+					costo += elemento.getPeso();
+					System.out.print(elemento.getId()+"->");
+					contador++;
+				}
+				System.out.print(iterador.getId());
+				System.out.println();
+			}
+
+			System.out.println();
+			System.out.println();
+			System.out.println("Aqui empiezo a imprimir lo de Dijkstra del lab pasado: ");
+
+			for (Vertice iterador : listaDeVertices){
 				listaPadres1 = miDijkstra.reconstruirCamino(iterador);
 				System.out.print("Nodo " + iterador.getId() + ": ");
-				int contador = 0;
-				double costo = 0;
+				contador = 0;
+				costo = 0;
 				while(listaPadres1.size()!=0){
 					Vertice elemento = listaPadres1.removeLast();
 					costo += elemento.getPeso();

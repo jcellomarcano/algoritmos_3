@@ -35,7 +35,7 @@ public class Aestrella{
 		while (colaAbiertos.getTamano()>0){
 			Elemento actual = colaAbiertos.extraerMinimo();
 			if (actual.getNodo().getVertice().getId().equals(nodoF.getVertice().getId())){
-				 //reconstruirCamino(actual.getNodo().getVertice());
+				 reconstruirCamino(actual.getNodo().getVertice());
 				 return 0;
 			}
 
@@ -43,9 +43,11 @@ public class Aestrella{
 			List<Vertice> adyacentes = grafo.adyacentes(actual.getNodo().getVertice().getId());
 			for (Vertice iterador2 : adyacentes){
 				if (listaCerrados.contains(iterador2)){
+
 					continue;
 				}
 				if (!colaAbiertos.estaEnLaCola(iterador2)){
+
 					Nodo nodo;
 					Elemento e1;
 					nodo = new Nodo(iterador2);
@@ -53,11 +55,15 @@ public class Aestrella{
 					colaAbiertos.agregarElemento(e1);
 				}
 
-				double gTentativo = iterador2.getG() + h(iterador2,actual.getNodo().getVertice());
+
+				double gTentativo = actual.getNodo().getVertice().getG() + h(iterador2,actual.getNodo().getVertice());
+
 				if (gTentativo >= iterador2.getG()){
 						continue;
 				}
+
 				iterador2.setPadre(actual.getNodo().getVertice());
+
 				iterador2.setG(gTentativo);
 				iterador2.setPeso(iterador2.getG()+h(iterador2,nodoF.getVertice()));
 			}
