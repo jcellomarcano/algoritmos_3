@@ -10,6 +10,9 @@ public class Orden{
 			miGrafo = new GrafoDirigido();
 			miGrafo.cargarGrafo(args[0]);
 			System.out.println(miGrafo.toString());
+			OrdenTopologico miOrdenTopologico = new OrdenTopologico();
+			miOrdenTopologico.ordenacion(miGrafo);
+			System.out.println(miOrdenTopologico.getLista()); 
 		}
 	}
 }
