@@ -23,10 +23,10 @@ public class GrafoDirigido {
  * @param GrafoDirigido: objeto grafo dirigido
 */
     public GrafoDirigido() {
-        int numV = 0;
-        int numL = 0;
-        g = new LinkedList<LinkedList<Vertice>>();
-        listaLados = new LinkedList<Arco>();
+        this.numV = 0;
+        this.numL = 0;
+        this.g = new LinkedList<LinkedList<Vertice>>();
+        this.listaLados = new LinkedList<Arco>();
     }
 
 /**
@@ -46,18 +46,23 @@ public class GrafoDirigido {
             boolean grafoCargado;
             grafoCargado = false;
             int contador = 0;
-            int numeroCubos;
-            int[] arregloMateriales = new int[6];
-            int contador;
-            while(in.hasNext()){
-                numeroCubos = in.next();
-                contador = 0;
-                for (int i=0; i<numeroCubos; i++){
-                    arregloMateriales[i] = in.next();
-                    Vertice nuevoCubo;
-                    nuevoCubo = new Vertice(Integer.toString(contador),0);
-                    nuevoCubo.setMateriales(arregloMateriales);
-                    this.agregarVertice(nuevoCubo);
+            while(in.hasNextLine()){
+                String lineas = in.nextLine();
+                String[] palabras = lineas.split(" ");
+                String idVerticeNuevo = palabras[0];
+                idVerticeNuevo = idVerticeNuevo.substring(0,idVerticeNuevo.length()-1);
+                Vertice nuevoVertice = new Vertice(idVerticeNuevo,0);
+                this.agregarVertice(nuevoVertice);
+                
+                for (int i=1; i<palabras.length;i++){
+                    Vertice verticeAAgregar;
+                    Arco nuevoArco;
+                    verticeAAgregar = new Vertice(palabras[i],0);
+                    this.agregarVertice(verticeAAgregar);
+                    nuevoArco = new Arco(Integer.toString(contador),0,nuevoVertice,verticeAAgregar);
+                    contador++;
+                    this.agregarArco(nuevoArco);
+                    
                 }
             }
             return grafoCargado;
@@ -398,19 +403,22 @@ public class GrafoDirigido {
         vf = a.getExtremoFinal();
 
         if (this.estaVertice(vi.getId()) && this.estaVertice(vf.getId())) {
+
+            /*
             if (this.estaLado(vi.getId(), vf.getId())){
                 return false;
             }
-            else {
-                for (int i=0; i<numV; i++) {
-                    if (g.get(i).get(0).getId().equals(vi.getId())) {
-                        g.get(i).add(vf);
-                    }
-                                }
-                listaLados.add(a);
-                numL = numL + 1;
-                return true;
+            */
+
+            for (int i=0; i<numV; i++) {
+                if (g.get(i).get(0).getId().equals(vi.getId())) {
+                    g.get(i).add(vf);
+                }
             }
+            listaLados.add(a);
+            numL = numL + 1;
+            return true;
+
         }
         return false;
     }

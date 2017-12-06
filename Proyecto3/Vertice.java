@@ -15,15 +15,19 @@ public class Vertice
   private boolean terminado;
   private int tiempo;
   private Vertice padre;
+
+  private int[] materiales;
   
   public Vertice(String id, double peso) {
     this.id = id;
     this.peso = peso;
-    representacion = this.id + " " + this.peso;
+    this.materiales = new int[6];
+    representacion = this.id + " " + this.peso + " ";
     this.visitado = false;
     this.padre = null;
     this.tiempo = 0;
     this.terminado = false;
+
   }
 
   public double getPeso() {
@@ -39,7 +43,12 @@ public class Vertice
   }
 
   public String toString() {
-    return this.representacion; 
+    
+    for (int i=0;i<=5;i++){
+      this.representacion+=this.materiales[i] + ", ";
+    }
+    return this.representacion;
+
   }
 
   public void setSuma(int suma){
@@ -62,7 +71,7 @@ public class Vertice
     return this.terminado;
   }
 
-  public void setTerminado(boolean visitado){
+  public void setTerminado(boolean terminado){
     this.terminado = terminado;
   }
 
@@ -80,5 +89,13 @@ public class Vertice
 
   public void setPadre(Vertice padre){
     this.padre = padre;
+  }
+
+  public void setMateriales(int[] materiales1){
+    this.materiales = materiales1;
+  }
+
+  public int[] getMateriales(){
+    return this.materiales;
   }
 }
