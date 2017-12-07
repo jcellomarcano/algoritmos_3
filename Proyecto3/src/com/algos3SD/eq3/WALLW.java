@@ -17,7 +17,7 @@ public class WALLW {
             boolean grafoCargado;
             grafoCargado = false;
             double contador = 0;
-            int contadorCasos = 0;
+            int contadorCasos = 1; 
             int idV = 0;
             
             //System.out.println("Esta es la cantidad de cubos" + numOfCubes + "\n");
@@ -28,7 +28,10 @@ public class WALLW {
                 int numOfCubes = Integer.parseInt(in.next());
                 Vertice[][] cubos = new Vertice[numOfCubes][6];
                 //System.out.println(lineas);
-                for (int i = 0; i < numOfCubes; i++){
+
+                if (numOfCubes > 0){
+
+                    for (int i = 0; i < numOfCubes; i++){
                     for (int j = 0; j < 6; j++){
                         String lineas = in.next();
                         
@@ -85,7 +88,10 @@ public class WALLW {
             posiblesSoluciones = miDFS.retornaListaSoluciones();
             //System.out.println(posiblesSoluciones);
             LinkedList<Vertice> solucionReal = miDFS.torreMasAlta(posiblesSoluciones);
-            System.out.println( miDFS.formatoSalida(solucionReal)); 
+            System.out.println( miDFS.formatoSalida(solucionReal,contadorCasos));
+            contadorCasos++; 
+                }
+                
 
             }
             

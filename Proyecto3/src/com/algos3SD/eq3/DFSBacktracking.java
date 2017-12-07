@@ -117,8 +117,9 @@ public class DFSBacktracking{
 
 /*Funcion que convierte la lista de Vertices que es solucion como un String
 dado como en la salida del programa */
-	public String formatoSalida(LinkedList<Vertice> solucion){
+	public String formatoSalida(LinkedList<Vertice> solucion, int numeroDeCaso){
 		String salida ="";
+		salida += "Case #" + Integer.toString(numeroDeCaso) + "\n";
 		salida += solucion.size() + "\n";
 
 		for (Vertice v : solucion){
