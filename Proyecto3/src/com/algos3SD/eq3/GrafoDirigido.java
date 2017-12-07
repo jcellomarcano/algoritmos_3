@@ -1,4 +1,4 @@
-/**
+package com.algos3SD.eq3; /**
  * GrafoDirigido.java
  * Autores:
  * @author Jesus Marcano USB-ID 12-10359
@@ -45,23 +45,36 @@ public class GrafoDirigido {
             Scanner in = new Scanner(new FileReader(dirArchivo));
             boolean grafoCargado;
             grafoCargado = false;
-            int contador = 0;
-            int numeroCubos;
-            int[] arregloMateriales = new int[6];
-            int contador;
+            double contador = 0;
+            int idV = 0;
+            int numOfCubes = Integer.parseInt(in.next());
+            System.out.println("Esta es la cantidad de cubos" + numOfCubes + "\n");
+
+            int[][] cubos = new int[numOfCubes][6];
             while(in.hasNext()){
-                numeroCubos = in.next();
-                contador = 0;
-                for (int i=0; i<numeroCubos; i++){
-                    arregloMateriales[i] = in.next();
-                    Vertice nuevoCubo;
-                    nuevoCubo = new Vertice(Integer.toString(contador),0);
-                    nuevoCubo.setMateriales(arregloMateriales);
-                    this.agregarVertice(nuevoCubo);
+                //System.out.println(lineas);
+                for (int i = 0; i < numOfCubes; i++){
+                    for (int j = 0; j < 6; j++){
+                        String lineas = in.next();
+                        cubos[i][j] = Integer.parseInt(lineas);
+                        String xy = String.valueOf(i) + String.valueOf(j);
+                        Vertice verticePorAgregar = new Vertice(xy,contador);
+                        this.agregarVertice(verticePorAgregar);
+                        idV ++;
+
+                    }
+                    contador ++;
+
                 }
+
+
+
+
             }
+            
             return grafoCargado;
         }
+
         catch (FileNotFoundException ex) {
             throw new IllegalArgumentException("No se pudo abrir el archivo: " + dirArchivo);
         }

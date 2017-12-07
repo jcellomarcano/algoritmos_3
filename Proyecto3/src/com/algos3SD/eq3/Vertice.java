@@ -1,3 +1,4 @@
+package com.algos3SD.eq3;
 /**
  * Vertice.java
  * Autores:
@@ -21,7 +22,6 @@ public class Vertice
     this.peso = peso;
     representacion = this.id + " " + this.peso;
     this.visitado = false;
-    this.padre = null;
     this.tiempo = 0;
     this.terminado = false;
   }
