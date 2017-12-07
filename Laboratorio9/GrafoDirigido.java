@@ -574,7 +574,7 @@ public class GrafoDirigido {
                 listaSucesores.add(iterador.getExtremoFinal());
             }
         }
-        return listaSucesores;
+         return listaSucesores;
 
     }
 

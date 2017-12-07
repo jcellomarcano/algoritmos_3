@@ -61,7 +61,7 @@ public class Vertice
     return this.terminado;
   }
 
-  public void setTerminado(boolean visitado){
+  public void setTerminado(boolean terminado){
     this.terminado = terminado;
   }
 
