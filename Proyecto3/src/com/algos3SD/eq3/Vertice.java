@@ -6,6 +6,8 @@
  * @author Jose Basanta USB-ID 13-10125
  */
 
+import java.util.*;
+
 public class Vertice
 {
   private String id;
@@ -16,6 +18,8 @@ public class Vertice
   private boolean terminado;
   private int tiempo;
   private Vertice padre;
+
+  private LinkedList<Vertice> caminoHastaEseVertice;
   
   public Vertice(String id, double peso) {
     this.id = id;
@@ -24,6 +28,7 @@ public class Vertice
     this.visitado = false;
     this.tiempo = 0;
     this.terminado = false;
+    this.caminoHastaEseVertice = new LinkedList<Vertice>();
   }
 
   public double getPeso() {
@@ -80,5 +85,13 @@ public class Vertice
 
   public void setPadre(Vertice padre){
     this.padre = padre;
+  }
+
+  public LinkedList<Vertice> getCaminoHastaEseVertice(){
+    return this.caminoHastaEseVertice;
+  }
+
+  public void setCaminoHastaEseVertice(LinkedList<Vertice> caminoHastaEseVertice){
+    this.caminoHastaEseVertice = caminoHastaEseVertice;
   }
 }

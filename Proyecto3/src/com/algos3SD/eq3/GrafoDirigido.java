@@ -58,7 +58,7 @@ public class GrafoDirigido {
                     for (int j = 0; j < 6; j++){
                         String lineas = in.next();
                         cubos[i][j] = Integer.parseInt(lineas);
-                        String xy = String.valueOf(i) + String.valueOf(j);
+                        String xy = String.valueOf(i)+"i" + String.valueOf(j)+"j";
                         Vertice verticePorAgregar = new Vertice(xy,contador);
                         this.agregarVertice(verticePorAgregar);
                         idV ++;
@@ -84,7 +84,7 @@ public class GrafoDirigido {
                             int material2 = cubos[k][l];
 
                             if (material1 == material2){
-                                this.agregarArco(Integer.toString(contadorArcos),0,Integer.toString(i)+Integer.toString(j),Integer.toString(k)+Integer.toString(l));
+                                this.agregarArco(Integer.toString(contadorArcos),0,Integer.toString(i)+"i"+Integer.toString(j)+"j",Integer.toString(k)+"i"+Integer.toString(l)+"j");
                                 contadorArcos++;
                             }
                         }
