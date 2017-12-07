@@ -635,6 +635,10 @@ public class GrafoDirigido {
         return listaPredecesores;
     }
 
+    public void setCubos(Vertice[][] cubos){
+        this.cubos = cubos;
+    }
+
     public Vertice[][] getCubos(){
         return this.cubos;
     }
