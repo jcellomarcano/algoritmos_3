@@ -19,6 +19,9 @@ public class Vertice
   private int tiempo;
   private Vertice padre;
 
+  private int posX;
+  private int posY;
+  private int material;
   private LinkedList<Vertice> caminoHastaEseVertice;
   
   public Vertice(String id, double peso) {
@@ -93,5 +96,30 @@ public class Vertice
 
   public void setCaminoHastaEseVertice(LinkedList<Vertice> caminoHastaEseVertice){
     this.caminoHastaEseVertice = caminoHastaEseVertice;
+  }
+
+  public int getMaterial(){
+    return this.material;
+  }
+
+  public void setMaterial(int material){
+    this.material = material;
+  }
+
+  public int getPosX(){
+    return this.posX;
+  }
+
+  public void setPosX(int posX){
+    this.posX = posX;
+  }
+
+
+  public int getPosY(){
+    return this.posY;
+  }
+
+  public void setPosY(int posY){
+    this.posY = posY;
   }
 }

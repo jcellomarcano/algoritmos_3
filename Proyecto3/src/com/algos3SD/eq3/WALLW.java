@@ -14,8 +14,10 @@ public class WALLW {
         miDFS = new DFSBacktracking(cuartosBasura);
         LinkedList<LinkedList<Vertice>> posiblesSoluciones;
         posiblesSoluciones = miDFS.retornaListaSoluciones();
+        System.out.println("Ya encontre mi lista de posibles soluciones");
         //System.out.println(posiblesSoluciones);
         LinkedList<Vertice> solucionReal = miDFS.torreMasAlta(posiblesSoluciones);
+        System.out.println("Ya encontre la torre mas alta");
         System.out.println( miDFS.formatoSalida(solucionReal)); 
 
         /*int ia[][] = {{1,2},{3,4}};

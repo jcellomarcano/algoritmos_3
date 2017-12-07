@@ -16,6 +16,7 @@ public class GrafoDirigido {
     private int numL;
     private LinkedList<LinkedList<Vertice>> g;
     private LinkedList<Arco> listaLados;
+    private Vertice[][] cubos;
 
 /**
  * GrafoDirigido:
@@ -28,6 +29,7 @@ public class GrafoDirigido {
         int numL = 0;
         g = new LinkedList<LinkedList<Vertice>>();
         listaLados = new LinkedList<Arco>();
+         
     }
 
 /**
@@ -49,18 +51,23 @@ public class GrafoDirigido {
             double contador = 0;
             int idV = 0;
             int numOfCubes = Integer.parseInt(in.next());
+            cubos = new Vertice[numOfCubes][6];
             //System.out.println("Esta es la cantidad de cubos" + numOfCubes + "\n");
 
-            int[][] cubos = new int[numOfCubes][6];
+            
             while(in.hasNext()){
                 //System.out.println(lineas);
                 for (int i = 0; i < numOfCubes; i++){
                     for (int j = 0; j < 6; j++){
                         String lineas = in.next();
-                        cubos[i][j] = Integer.parseInt(lineas);
+                        
                         String xy = String.valueOf(i)+"i" + String.valueOf(j)+"j";
                         Vertice verticePorAgregar = new Vertice(xy,contador);
+                        verticePorAgregar.setPosX(i);
+                        verticePorAgregar.setPosY(j);
+                        verticePorAgregar.setMaterial(Integer.parseInt(lineas));
                         this.agregarVertice(verticePorAgregar);
+                        cubos[i][j] = verticePorAgregar;
                         idV ++;
 
                     }
@@ -76,15 +83,20 @@ public class GrafoDirigido {
             for (int i = 0; i < numOfCubes; i++){
                 for (int j = 0; j < 6; j++){
                     
-                    int material1 = cubos[i][j];
-
+                    Vertice v = cubos[i][j];
+                    int material1 = v.getMaterial();
 
                     for (int k=i+1;k<numOfCubes;k++){
-                        for (int l = 0; l<6; l++){
-                            int material2 = cubos[k][l];
 
+                        for (int l = 0; l<6; l++){
+
+                            Vertice w = cubos[k][l];
+                            int material2 = w.getMaterial();
                             if (material1 == material2){
-                                this.agregarArco(Integer.toString(contadorArcos),0,Integer.toString(i)+"i"+Integer.toString(j)+"j",Integer.toString(k)+"i"+Integer.toString(l)+"j");
+                                Arco nuevoArco;
+                                nuevoArco = new Arco(Integer.toString(contadorArcos),0,v,w);
+
+                                this.agregarArco(nuevoArco);
                                 contadorArcos++;
                             }
                         }
@@ -136,11 +148,6 @@ public class GrafoDirigido {
  * @throws verticeAgregado: boolean, el vertice se ha agregado exitosamente o caso contrario
 */
     public boolean agregarVertice(Vertice v) {
-        for (int i=0; i<numV; i++){
-            if (g.get(i).get(0).getId().equals(v.getId())){
-                return false;
-            }
-        }
         numV = numV + 1;
         LinkedList<Vertice> aux;
         aux = new LinkedList<Vertice>();
@@ -432,22 +439,16 @@ public class GrafoDirigido {
         vi = a.getExtremoInicial();
         vf = a.getExtremoFinal();
 
-        if (this.estaVertice(vi.getId()) && this.estaVertice(vf.getId())) {
-            if (this.estaLado(vi.getId(), vf.getId())){
-                return false;
-            }
-            else {
-                for (int i=0; i<numV; i++) {
-                    if (g.get(i).get(0).getId().equals(vi.getId())) {
-                        g.get(i).add(vf);
-                    }
-                                }
-                listaLados.add(a);
-                numL = numL + 1;
-                return true;
+        for (int i=0; i<numV; i++) {
+            if (g.get(i).get(0).getId().equals(vi.getId())) {
+                g.get(i).add(vf);
             }
         }
-        return false;
+        listaLados.add(a);
+        numL = numL + 1;
+        return true;
+            
+
     }
 
 /**
@@ -632,6 +633,10 @@ public class GrafoDirigido {
             }
         }
         return listaPredecesores;
+    }
+
+    public Vertice[][] getCubos(){
+        return this.cubos;
     }
 
 

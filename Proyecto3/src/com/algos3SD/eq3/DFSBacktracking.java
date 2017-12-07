@@ -27,6 +27,7 @@ public class DFSBacktracking{
 		/*INICIO: Halla la cara contraria*/
 				String posVerticeV = v.getId();
 				int contador = 0;
+				/*
 				String posX = "";
 				String posY = "";
 				for (int i=0;i<posVerticeV.length();i++){
@@ -44,8 +45,23 @@ public class DFSBacktracking{
 				else{
 					posYInverso = Integer.toString(Integer.parseInt(posY)-1);
 				}
+				*/
+
+				int posX = v.getPosX();
+				int posY = v.getPosY();
+
+				int posYInverso;
+
+				if (posY%2==0){
+					posYInverso = posY+1;
+				}
+				else{
+					posYInverso = posY-1;
+				}
+
+				Vertice[][] cubos = this.grafo.getCubos();
 		
-				Vertice v1 = this.grafo.obtenerVertice(posX+"i"+posYInverso+"j");
+				Vertice v1 = cubos[posX][posYInverso];
 
 				/*FIN */
 
@@ -108,6 +124,35 @@ dado como en la salida del programa */
 		for (Vertice v : solucion){
 			String posVerticeV = v.getId();
 			int contador = 0;
+
+			int posX = v.getPosX();
+			int posY = v.getPosY();
+			salida+= Integer.toString(posX+1) + " ";
+			String cara;
+			cara = "";
+			if (posY == 0){
+				cara = "front";
+			}
+			else if (posY == 1){
+				cara = "back";
+			}
+			else if (posY == 2){
+				cara = "left";
+			}
+
+			else if (posY == 3){
+				cara = "right";
+			}
+			else if (posY == 4){
+				cara = "top";
+			}
+			else if (posY == 5){
+				cara = "bottom";
+			}
+
+			salida+= cara + "\n";
+
+			/*
 			String posX = "";
 			String posY = "";
 			for (int i=0;i<posVerticeV.length();i++){
@@ -142,8 +187,10 @@ dado como en la salida del programa */
 			}
 			salida+= cara + "\n";
 
-		}
+		*/
 
+		}
+		
 		return salida;
 	}
 
