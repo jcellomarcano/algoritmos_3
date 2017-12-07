@@ -1,4 +1,5 @@
-package com.algos3SD.eq3; /**
+//package com.algos3SD.eq3;
+ /**
  * GrafoDirigido.java
  * Autores:
  * @author Jesus Marcano USB-ID 12-10359
@@ -67,10 +68,31 @@ public class GrafoDirigido {
 
                 }
 
+            }
+
+            int contadorArcos;
+            contadorArcos = 0;
+
+            for (int i = 0; i < numOfCubes; i++){
+                for (int j = 0; j < 6; j++){
+                    
+                    int material1 = cubos[i][j];
 
 
+                    for (int k=i+1;k<numOfCubes;k++){
+                        for (int l = 0; l<6; l++){
+                            int material2 = cubos[k][l];
+
+                            if (material1 == material2){
+                                this.agregarArco(Integer.toString(contadorArcos),0,Integer.toString(i)+Integer.toString(j),Integer.toString(k)+Integer.toString(l));
+                                contadorArcos++;
+                            }
+                        }
+                    }
+                }
 
             }
+            
             
             return grafoCargado;
         }

@@ -1,4 +1,4 @@
-package com.algos3SD.eq3;
+//package com.algos3SD.eq3;
 /**
  * Arco.java
  * Autores:
