@@ -12,6 +12,7 @@ public class DFSBacktracking{
 
 		for (Vertice v : listaVertices){
 			LinkedList<Vertice> camino2;
+			//esto es un comentario
 			camino2 = new LinkedList<Vertice>();
 			camino2.add(v);
 			v.setCaminoHastaEseVertice(camino2);
