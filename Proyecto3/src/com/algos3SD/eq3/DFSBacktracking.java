@@ -24,23 +24,15 @@ public class DFSBacktracking{
 		LinkedList<Vertice> camino;
 		camino = v.getCaminoHastaEseVertice();
 
-
-
-		/* INICIO Revisa los sucesores de esa cara*/
-		List<Vertice> listaSucesores = this.grafo.sucesores(v.getId());
-
-		if (listaSucesores.size()>0){     
-			for(Vertice w : listaSucesores){
-
-				/*INICIO: Halla la cara contraria*/
-				String posVerticeW = w.getId();
+		/*INICIO: Halla la cara contraria*/
+				String posVerticeV = v.getId();
 				int contador = 0;
 				String posX = "";
 				String posY = "";
-				for (int i=0;i<posVerticeW.length();i++){
-					if (posVerticeW.substring(i,i+1).equals("i")){
-						posX = posVerticeW.substring(0,i);
-						posY = posVerticeW.substring(i+1,posVerticeW.length()-1);
+				for (int i=0;i<posVerticeV.length();i++){
+					if (posVerticeV.substring(i,i+1).equals("i")){
+						posX = posVerticeV.substring(0,i);
+						posY = posVerticeV.substring(i+1,posVerticeV.length()-1);
 						break;
 					}
 				}
@@ -53,9 +45,17 @@ public class DFSBacktracking{
 					posYInverso = Integer.toString(Integer.parseInt(posY)-1);
 				}
 		
-				Vertice w1 = this.grafo.obtenerVertice(posX+"i"+posYInverso+"j");
+				Vertice v1 = this.grafo.obtenerVertice(posX+"i"+posYInverso+"j");
 
 				/*FIN */
+
+		/* INICIO Revisa los sucesores de esa cara*/
+		List<Vertice> listaSucesores = this.grafo.sucesores(v1.getId());
+
+		if (listaSucesores.size()>0){     
+			for(Vertice w : listaSucesores){
+
+				
 
 
 
@@ -64,9 +64,9 @@ public class DFSBacktracking{
 				for (Vertice iterador : v.getCaminoHastaEseVertice()){
 					camino1.add(iterador);
 				}
-				camino1.add(w1);
-				w1.setCaminoHastaEseVertice(camino1);
-				busquedaDFS(w1);
+				camino1.add(w);
+				w.setCaminoHastaEseVertice(camino1);
+				busquedaDFS(w);
 			} 
 		}
 
@@ -85,7 +85,7 @@ public class DFSBacktracking{
 		return this.listaSoluciones;
 	}
 
-/*Itera sobre todas las soluciones y encuentra la torre mas alta */
+/*Itera sobre todas las soluciones y encuentra la torre mas alta*/
 	public LinkedList<Vertice> torreMasAlta(LinkedList<LinkedList<Vertice>> posiblesSoluciones){
 		int tamano = 0;
 		LinkedList<Vertice> solucion;

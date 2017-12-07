@@ -49,7 +49,7 @@ public class GrafoDirigido {
             double contador = 0;
             int idV = 0;
             int numOfCubes = Integer.parseInt(in.next());
-            System.out.println("Esta es la cantidad de cubos" + numOfCubes + "\n");
+            //System.out.println("Esta es la cantidad de cubos" + numOfCubes + "\n");
 
             int[][] cubos = new int[numOfCubes][6];
             while(in.hasNext()){
