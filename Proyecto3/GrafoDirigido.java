@@ -574,7 +574,14 @@ public class GrafoDirigido {
 
         for (Arco iterador : listaLados){
             if (iterador.getExtremoInicial().getId().equals(id)){
-                listaSucesores.add(iterador.getExtremoFinal());
+                if (iterador.getExtremoInicial().getMaterialCaraArriba() == iterador.getMaterial()){
+                    LinkedList<Integer> listaCarasConexion;
+                    listaCarasConexion = iterador.getExtremoFinal().getCaraConexion();
+                    listaCarasConexion.add(iterador.getCaraConexion());
+                    iterador.getExtremoFinal().setCaraConexion(listaCarasConexion); 
+                    listaSucesores.add(iterador.getExtremoFinal());
+                }
+                
             }
         }
         return listaSucesores;

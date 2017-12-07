@@ -66,6 +66,7 @@ public class WALLW{
                 						Arco nuevoArco;
                 						nuevoArco = new Arco(Integer.toString(contador1),0,cubo1,cubo2);
                 						nuevoArco.setMaterial(materialcubo1);
+                                        nuevoArco.setCaraConexion(j);
                 						miGrafo.agregarArco(nuevoArco);
                 						contador1++;
                 					}
@@ -76,7 +77,13 @@ public class WALLW{
 
                 }
 
-                System.out.println(miGrafo);          
+                System.out.println(miGrafo);
+
+                /*Comienzo del DFS con Backtracking */
+
+                DFSBacktracking miDFS;
+                miDFS = new DFSBacktracking(miGrafo);
+                System.out.println(miDFS.retornarCaminoMasLargo());          
             }
 
 		}

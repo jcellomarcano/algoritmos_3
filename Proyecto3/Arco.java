@@ -11,6 +11,8 @@ public class Arco extends Lado
   private Vertice extremoFinal;
   private String representacion;
   private int material;
+
+  private int caraConexion;
   
   public Arco(String id, double peso, Vertice extremoInicial, Vertice extremoFinal) {
     super(id,peso);
@@ -28,7 +30,8 @@ public class Arco extends Lado
   }
 
   public String toString() {
-    representacion+=this.material;
+    representacion+=this.material + " " + getCaraConexion() ;
+
     return this.representacion;
   }
 
@@ -38,5 +41,13 @@ public class Arco extends Lado
 
   public int getMaterial(){
     return this.material;
+  }
+
+  public void setCaraConexion(int caraConexion){
+    this.caraConexion = caraConexion;
+  }
+
+  public int getCaraConexion(){
+    return this.caraConexion;
   }
 }

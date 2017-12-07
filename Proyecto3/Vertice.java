@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 /**
  * Vertice.java
  * Autores:
@@ -17,6 +20,12 @@ public class Vertice
   private Vertice padre;
 
   private int[] materiales;
+
+  private int materialCaraArriba;
+  private int caraArriba;
+
+  private LinkedList<Integer> caraConexion;
+  private LinkedList<Vertice> caminoHastaEseVertice;
   
   public Vertice(String id, double peso) {
     this.id = id;
@@ -27,6 +36,7 @@ public class Vertice
     this.padre = null;
     this.tiempo = 0;
     this.terminado = false;
+    this.caraConexion = new LinkedList<Integer>();
 
   }
 
@@ -44,9 +54,13 @@ public class Vertice
 
   public String toString() {
     
+    /*
     for (int i=0;i<=5;i++){
       this.representacion+=this.materiales[i] + ", ";
     }
+    */
+
+    representacion+= caraArriba;
     return this.representacion;
 
   }
@@ -97,5 +111,38 @@ public class Vertice
 
   public int[] getMateriales(){
     return this.materiales;
+  }
+
+  public void setMaterialCaraArriba(int materialCaraArriba){
+    this.materialCaraArriba = materialCaraArriba;
+  }
+
+  public int getMaterialCaraArriba(){
+    return this.materialCaraArriba;
+  }
+
+
+  public void setCaraArriba(int caraArriba){
+    this.caraArriba = caraArriba;
+  }
+
+  public int getCaraArriba(){
+    return this.caraArriba;
+  }
+
+  public void setCaraConexion(LinkedList<Integer> caraConexion){
+    this.caraConexion = caraConexion;
+  }
+
+  public LinkedList<Integer> getCaraConexion(){
+    return this.caraConexion;
+  }
+
+  public void setCaminoHastaEseVertice(LinkedList<Vertice> caminoHastaEseVertice){
+    this.caminoHastaEseVertice = caminoHastaEseVertice;
+  }
+
+  public LinkedList<Vertice> getCaminoHastaEseVertice(){
+    return this.caminoHastaEseVertice;
   }
 }
