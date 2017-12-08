@@ -19,6 +19,7 @@ public class Vertice
   private int tiempo;
   private Vertice padre;
 
+  private LinkedList<Vertice> sucesores;
   private int posX;
   private int posY;
   private int material;
@@ -32,6 +33,7 @@ public class Vertice
     this.tiempo = 0;
     this.terminado = false;
     this.caminoHastaEseVertice = new LinkedList<Vertice>();
+    this.sucesores = new LinkedList<Vertice>();
   }
 
   public double getPeso() {
@@ -121,5 +123,13 @@ public class Vertice
 
   public void setPosY(int posY){
     this.posY = posY;
+  }
+
+  public LinkedList<Vertice> getSucesores(){
+    return this.sucesores;
+  }
+
+  public void setSucesores(LinkedList<Vertice> sucesores){
+    this.sucesores = sucesores;
   }
 }

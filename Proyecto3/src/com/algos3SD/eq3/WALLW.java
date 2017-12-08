@@ -73,6 +73,10 @@ public class WALLW {
                                 nuevoArco = new Arco(Integer.toString(contadorArcos),0,v,w);
 
                                 cuartosBasura.agregarArco(nuevoArco);
+                                LinkedList<Vertice> sucesores;
+                                sucesores = v.getSucesores();
+                                sucesores.add(w);
+                                v.setSucesores(sucesores);
                                 contadorArcos++;
                             }
                         }
@@ -80,7 +84,6 @@ public class WALLW {
                 }
 
             }
-
 
             DFSBacktracking miDFS;
             miDFS = new DFSBacktracking(cuartosBasura);

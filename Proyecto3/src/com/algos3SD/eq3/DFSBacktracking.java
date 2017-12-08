@@ -66,7 +66,7 @@ public class DFSBacktracking{
 				/*FIN */
 
 		/* INICIO Revisa los sucesores de esa cara*/
-		List<Vertice> listaSucesores = this.grafo.sucesores(v1.getId());
+		LinkedList<Vertice> listaSucesores = v1.getSucesores();
 
 		if (listaSucesores.size()>0){     
 			for(Vertice w : listaSucesores){
@@ -77,12 +77,21 @@ public class DFSBacktracking{
 
 				LinkedList<Vertice> camino1;
 				camino1 = new LinkedList<Vertice>();
-				for (Vertice iterador : v.getCaminoHastaEseVertice()){
-					camino1.add(iterador);
+				camino1 = v.getCaminoHastaEseVertice();
+
+				LinkedList<Vertice> camino2;
+				camino2 = w.getCaminoHastaEseVertice();
+
+				if(camino1.size()>=camino2.size()){
+					LinkedList camino3 = new LinkedList<Vertice>();
+					for (Vertice iterador : camino1){
+						camino3.add(iterador);
+					}
+					camino3.add(w);
+					w.setCaminoHastaEseVertice(camino3);
+					busquedaDFS(w);
 				}
-				camino1.add(w);
-				w.setCaminoHastaEseVertice(camino1);
-				busquedaDFS(w);
+				
 			} 
 		}
 
