@@ -13,7 +13,7 @@ public class OrdenTopologico{
 	public void ordenacion(GrafoDirigido g){
 		List<Vertice> listaVertice;
 		listaVertice = g.vertices();
-		System.out.println(listaVertice);
+		//System.out.println(listaVertice);
 
 
         for (Vertice iterador : listaVertice){
