@@ -1,0 +1,41 @@
+Case #1
+7
+2 back
+3 right
+5 right
+6 back
+7 top
+9 left
+12 front
+
+Case #2
+4
+1 right
+3 top
+5 right
+6 front
+
+Case #3
+4
+2 bottom
+6 back
+7 back
+8 right
+
+Case #4
+5
+4 right
+5 bottom
+6 right
+7 left
+8 front
+
+Case #5
+7
+2 right
+3 right
+4 bottom
+7 back
+8 top
+9 bottom
+12 front
